@@ -37,9 +37,27 @@ public class GameManager : NetworkBehaviour
     private TankManager m_RoundWinner;          // Reference to the winner of the current round.  Used to make an announcement of who won.
     private TankManager m_GameWinner;           // Reference to the winner of the game.  Used to make an announcement of who won.
 
+    static public bool DEBUG_MODE = false;
+
     void Awake()
     {
         s_Instance = this;
+
+
+        if(DEBUG_MODE)
+        { 
+            GameObject debugTank = Instantiate(m_TankPrefab);
+            GameObject debugTank2 = Instantiate(m_TankPrefab);
+            GameManager.AddTank(debugTank, 1, Color.cyan, "DUMMY PLAYER 1", 1);
+            GameManager.AddTank(debugTank2, 2, Color.magenta, "DUMMY PLAYER 2", 2);
+
+            // Create the delays so they only have to be made once.
+            m_StartWait = new WaitForSeconds(m_StartDelay);
+            m_EndWait = new WaitForSeconds(m_EndDelay);
+
+            // Once the tanks have been created and the camera is using them as targets, start the game.
+            StartCoroutine(GameLoop());
+        }
     }
 
     [ServerCallback]

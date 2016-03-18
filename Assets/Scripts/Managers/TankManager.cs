@@ -25,6 +25,7 @@ public class TankManager
     public int m_LocalPlayerID;                    // The player localID (if there is more than 1 player on the same machine)
 
     public TankMovement m_Movement;        // References to various objects for control during the different game phases.
+    public TankRandomMovement m_RandomMovement;        // References to various objects for control during the different game phases.
     public TankShooting m_Shooting;
     public TankHealth m_Health;
     public TankSetup m_Setup;
@@ -33,6 +34,7 @@ public class TankManager
     {
         // Get references to the components.
         m_Movement = m_Instance.GetComponent<TankMovement>();
+        m_RandomMovement = m_Instance.GetComponent<TankRandomMovement>();
         m_Shooting = m_Instance.GetComponent<TankShooting>();
         m_Health = m_Instance.GetComponent<TankHealth>();
         m_Setup = m_Instance.GetComponent<TankSetup>();
@@ -44,6 +46,9 @@ public class TankManager
         m_Health.m_Manager = this;
 
         // Set the player numbers to be consistent across the scripts.
+        m_RandomMovement.m_PlayerNumber = m_PlayerNumber;
+        m_RandomMovement.m_LocalID = m_LocalPlayerID;
+
         m_Movement.m_PlayerNumber = m_PlayerNumber;
         m_Movement.m_LocalID = m_LocalPlayerID;
 
@@ -62,6 +67,7 @@ public class TankManager
     public void DisableControl()
     {
         m_Movement.enabled = false;
+        m_RandomMovement.enabled = false;
         m_Shooting.enabled = false;
     }
 
@@ -69,7 +75,8 @@ public class TankManager
     // Used during the phases of the game where the player should be able to control their tank.
     public void EnableControl()
     {
-        m_Movement.enabled = true;
+        m_Movement.enabled = false;
+        m_RandomMovement.enabled = true;
         m_Shooting.enabled = true;
 
         m_Movement.ReEnableParticles();
@@ -93,6 +100,7 @@ public class TankManager
     // Used at the start of each round to put the tank into it's default state.
     public void Reset()
     {
+        m_RandomMovement.SetDefaults();
         m_Movement.SetDefaults();
         m_Shooting.SetDefaults();
         m_Health.SetDefaults();
@@ -101,6 +109,13 @@ public class TankManager
         {
             m_Movement.m_Rigidbody.position = m_SpawnPoint.position;
             m_Movement.m_Rigidbody.rotation = m_SpawnPoint.rotation;
+        }
+
+        if (m_RandomMovement.hasAuthority)
+        {
+
+            m_RandomMovement.m_Rigidbody.position = m_SpawnPoint.position;
+            m_RandomMovement.m_Rigidbody.rotation = m_SpawnPoint.rotation;
         }
     }
 }
