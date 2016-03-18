@@ -2084,7 +2084,8 @@ MonoBehaviour:
   m_MinLaunchForce: 15
   m_MaxLaunchForce: 30
   m_MaxChargeTime: 0.75
-  m_areaDamageDistance: 10
+  m_areaDamageDistance: 30
+  m_areaDamageAmount: 30
   m_localID: 0
 --- !u!114 &11490040
 MonoBehaviour:

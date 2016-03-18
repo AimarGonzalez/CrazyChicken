@@ -109,6 +109,8 @@ public class TankShooting : NetworkBehaviour
                     pollo.GetComponent<TankHealth>().Damage(m_areaDamageAmount);
                 }
             }
+
+            transform.FindChild("Chicken").GetComponent<Animator>().SetTrigger("KickTrigger");
         }
     }
 
