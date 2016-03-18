@@ -430,7 +430,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: c64876f1b0d90f045b3d4c2217110b19, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: c64876f1b0d90f045b3d4c2217110b19, type: 3}
       propertyPath: m_Name
@@ -1145,7 +1145,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: c64876f1b0d90f045b3d4c2217110b19, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: c64876f1b0d90f045b3d4c2217110b19, type: 3}
       propertyPath: m_Name
@@ -1795,7 +1795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a000792783c934885973b761b3f96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NumRoundsToWin: 5
+  m_NumKillsToWin: 20
   m_StartDelay: 3
   m_EndDelay: 3
   m_CameraControl: {fileID: 1771596988}
@@ -2635,7 +2635,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: c64876f1b0d90f045b3d4c2217110b19, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: c64876f1b0d90f045b3d4c2217110b19, type: 3}
       propertyPath: m_Name
@@ -4044,7 +4044,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9e1df5e993e206f43833eae7b2a7c267, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 9e1df5e993e206f43833eae7b2a7c267, type: 3}
       propertyPath: m_Name
