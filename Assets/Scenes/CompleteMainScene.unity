@@ -2217,7 +2217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a000792783c934885973b761b3f96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NumKillsToWin: 20
+  m_NumKillsToWin: 2
   m_StartDelay: 3
   m_EndDelay: 3
   m_CameraControl: {fileID: 1771596988}
@@ -2253,7 +2253,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24328132, guid: 86a7353f2579d476fbaa7f161c2e5d00,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 8ce5d020a687c314891341b4126d1de2, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2971,15 +2971,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 443984, guid: 7ad3883726e2c4448a86ab4449cd01bb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 4.7
+      value: 21.68
       objectReference: {fileID: 0}
     - target: {fileID: 443984, guid: 7ad3883726e2c4448a86ab4449cd01bb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.38
+      value: -1.59
       objectReference: {fileID: 0}
     - target: {fileID: 443984, guid: 7ad3883726e2c4448a86ab4449cd01bb, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 12.11
+      value: -14.63
       objectReference: {fileID: 0}
     - target: {fileID: 443984, guid: 7ad3883726e2c4448a86ab4449cd01bb, type: 2}
       propertyPath: m_LocalRotation.x
