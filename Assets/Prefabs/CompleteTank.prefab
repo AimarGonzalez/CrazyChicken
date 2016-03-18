@@ -436,6 +436,7 @@ GameObject:
   - 82: {fileID: 8261418}
   - 82: {fileID: 8268710}
   - 114: {fileID: 11443146}
+  - 114: {fileID: 11408588}
   - 114: {fileID: 11409376}
   - 114: {fileID: 11488788}
   - 114: {fileID: 11403330}
@@ -1687,6 +1688,24 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11408588
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 915c23cb557420c43ba6b849c1877871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerNumber: 1
+  m_LocalID: 1
+  m_Rigidbody: {fileID: 0}
+  m_Speed: 2
+  m_destination: {x: 0, y: 0, z: 0}
+  movementDestinationMin: 0
+  movementDestinationMax: 200
 --- !u!114 &11409376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1721,6 +1740,7 @@ MonoBehaviour:
     m_PlayerName: 
     m_LocalPlayerID: 0
     m_Movement: {fileID: 0}
+    m_RandomMovement: {fileID: 0}
     m_Shooting: {fileID: 0}
     m_Health: {fileID: 0}
     m_Setup: {fileID: 0}
@@ -1822,7 +1842,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173472}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e4cc0827b572b5408b2cd8eb8b456b4, type: 3}
   m_Name: 
