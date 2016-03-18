@@ -1705,8 +1705,8 @@ MonoBehaviour:
   m_Rigidbody: {fileID: 0}
   m_Speed: 2
   m_destination: {x: 0, y: 0, z: 0}
-  movementDestinationMin: -15
-  movementDestinationMax: 15
+  movementDestinationMin: 0
+  movementDestinationMax: 5
 --- !u!114 &11409376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2087,6 +2087,7 @@ MonoBehaviour:
   m_areaDamageDistance: 30
   m_areaDamageAmount: 30
   m_localID: 0
+  m_plumasParticles: {fileID: 136926, guid: 14d2025a6af91f149b7579f642581574, type: 2}
 --- !u!114 &11490040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2171,7 +2172,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173472}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 1.18
   m_Height: 1.93
