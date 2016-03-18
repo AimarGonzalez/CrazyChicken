@@ -5,6 +5,9 @@ using UnityEngine.Networking;
 using UnityEngine.Networking.Types;
 using UnityEngine.Networking.Match;
 using System.Collections;
+ using System.Net;
+ using System.Net.Sockets;
+ using System.Linq;
 
 
 namespace UnityStandardAssets.Network
@@ -39,7 +42,6 @@ namespace UnityStandardAssets.Network
         protected LobbyHook _lobbyHooks;
 
         public Text networkAddressLabel;
-        public Text serverBindAddressLabel;
 
         void Awake()
         {
@@ -60,8 +62,26 @@ namespace UnityStandardAssets.Network
 
             SetServerInfo("Offline", "None");
 
-            networkAddressLabel.text = networkAddress;
-            serverBindAddressLabel.text = serverBindAddress;
+            ShowIpAddress();
+        }
+
+        private void ShowIpAddress()
+        {
+            //networkAddressLabel.text = networkAddress; //out: localhost
+            networkAddressLabel.text = GetLocalIPAddress();
+        }
+
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            return "Local IP Address Not Found!";
         }
 
         public override void OnLobbyClientSceneChanged(NetworkConnection conn)
