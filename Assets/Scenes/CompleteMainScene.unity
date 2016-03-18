@@ -85,7 +85,7 @@ NavMeshSettings:
     minRegionArea: 2
     cellSize: 0.16666667
     manualCellSize: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: ee815e6915c70c542a0eebb0b978e52f, type: 2}
 --- !u!1 &43236449
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +430,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: c64876f1b0d90f045b3d4c2217110b19, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: c64876f1b0d90f045b3d4c2217110b19, type: 3}
       propertyPath: m_Name
@@ -993,7 +993,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9e1df5e993e206f43833eae7b2a7c267, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 9e1df5e993e206f43833eae7b2a7c267, type: 3}
       propertyPath: m_Name
@@ -1418,7 +1418,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: c64876f1b0d90f045b3d4c2217110b19, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: c64876f1b0d90f045b3d4c2217110b19, type: 3}
       propertyPath: m_Name
@@ -2938,7 +2938,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: c64876f1b0d90f045b3d4c2217110b19, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: c64876f1b0d90f045b3d4c2217110b19, type: 3}
       propertyPath: m_Name
@@ -2984,7 +2984,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9e1df5e993e206f43833eae7b2a7c267, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 9e1df5e993e206f43833eae7b2a7c267, type: 3}
       propertyPath: m_Name
@@ -3241,9 +3241,9 @@ Transform:
   - {fileID: 790546901}
   - {fileID: 1479296467}
   - {fileID: 327129225}
-  - {fileID: 1314944598}
   - {fileID: 517441578}
   - {fileID: 1548416270}
+  - {fileID: 1314944598}
   - {fileID: 1338318429}
   - {fileID: 2009559330}
   m_Father: {fileID: 0}
@@ -4044,7 +4044,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9e1df5e993e206f43833eae7b2a7c267, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 9e1df5e993e206f43833eae7b2a7c267, type: 3}
       propertyPath: m_Name
