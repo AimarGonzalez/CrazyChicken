@@ -11,6 +11,7 @@ public class TankRandomMovement : NetworkBehaviour
 
     public float m_Speed = 2f;
 
+    NavMeshAgent agent;
     public Vector3 m_destination = Vector3.zero;
 
 
@@ -21,6 +22,7 @@ public class TankRandomMovement : NetworkBehaviour
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     // Use this for initialization
@@ -47,20 +49,31 @@ public class TankRandomMovement : NetworkBehaviour
     private void Move()
     {
         // Create a movement vector based on the input, speed and the time between frames, in the direction the tank is facing.
-       
 
-        if(Vector3.Distance(m_Rigidbody.position, m_destination) < 10)
+        float distanceToTarget = Vector3.Distance(m_Rigidbody.position, m_destination);
+        if (distanceToTarget < 10f)
         {
             m_destination = GetNewDestination();
         }
 
-        m_Rigidbody.AddForce(m_destination - m_Rigidbody.position);
-       
-        
-        //Vector3 movement = m_Rigidbody.position - destination * m_Speed * Time.deltaTime;
+        if (distanceToTarget > 1f) { 
+            agent.destination = m_destination;
+            
+        }
 
-        // Apply this movement to the rigidbody's position.
-        //m_Rigidbody.MovePosition(m_Rigidbody.position + movement);
+
+        //Metodo 2:
+        /*
+            m_Rigidbody.AddForce(m_destination - m_Rigidbody.position);
+        */
+       
+        //Metodo 3:
+        /*
+            Vector3 movement = m_Rigidbody.position - destination * m_Speed * Time.deltaTime;
+
+            Apply this movement to the rigidbody's position.
+            m_Rigidbody.MovePosition(m_Rigidbody.position + movement);
+        */
     }
 
     private Vector3 GetNewDestination()

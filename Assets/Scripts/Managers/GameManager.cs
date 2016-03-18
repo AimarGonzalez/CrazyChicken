@@ -37,7 +37,7 @@ public class GameManager : NetworkBehaviour
     private TankManager m_RoundWinner;          // Reference to the winner of the current round.  Used to make an announcement of who won.
     private TankManager m_GameWinner;           // Reference to the winner of the game.  Used to make an announcement of who won.
 
-    static public bool DEBUG_MODE = true;
+    static public bool DEBUG_MODE = false;
 
     void Awake()
     {
