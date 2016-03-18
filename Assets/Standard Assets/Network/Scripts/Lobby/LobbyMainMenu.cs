@@ -21,6 +21,7 @@ namespace UnityStandardAssets.Network
 
             ipInput.onEndEdit.RemoveAllListeners();
             ipInput.onEndEdit.AddListener(onEndEditIP);
+            ipInput.text = LobbyManager.GetLocalIPAddress();
 
             matchNameInput.onEndEdit.RemoveAllListeners();
             matchNameInput.onEndEdit.AddListener(onEndEditGameName);

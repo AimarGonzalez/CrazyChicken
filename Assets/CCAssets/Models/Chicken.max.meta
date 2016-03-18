@@ -137,6 +137,7 @@ ModelImporter:
     7400000: Walk
     7400002: Jump
     7400004: Hit
+    7400006: Dash
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -280,6 +281,64 @@ ModelImporter:
       takeName: Take 001
       firstFrame: 55
       lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArmLeft
+        weight: 1
+      - path: ArmRight
+        weight: 1
+      - path: EyeLeft
+        weight: 1
+      - path: EyeRight
+        weight: 1
+      - path: Hair
+        weight: 1
+      - path: LegLeft
+        weight: 1
+      - path: LegLeft/FeetLeft
+        weight: 1
+      - path: LegRight
+        weight: 1
+      - path: LegRight/FeetRight
+        weight: 1
+      - path: Mouth
+        weight: 1
+      - path: MouthDown
+        weight: 1
+      - path: ParpadoLeft
+        weight: 1
+      - path: ParpadoRight
+        weight: 1
+      - path: Tail
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Dash
+      takeName: Take 001
+      firstFrame: 85
+      lastFrame: 115
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
