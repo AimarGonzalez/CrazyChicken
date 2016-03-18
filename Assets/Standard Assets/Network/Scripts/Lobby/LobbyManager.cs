@@ -11,24 +11,17 @@ namespace UnityStandardAssets.Network
 {
     public class LobbyManager : NetworkLobbyManager 
     {
-        static short MsgKicked = MsgType.Highest + 1;
-
         static public LobbyManager s_Singleton;
 
+        [Tooltip("The minimum number of players in the lobby before player can be ready")]
+        public int minPlayer;
 
-        [Tooltip("Time in second between all players ready & match start")]
-        public float prematchCountdown = 5.0f;
-
-        [Space]
-        [Header("UI Reference")]
         public LobbyTopPanel topPanel;
 
         public RectTransform mainMenuPanel;
         public RectTransform lobbyPanel;
 
         public LobbyInfoPanel infoPanel;
-        public LobbyCountdownPanel countdownPanel;
-        public GameObject addPlayerButton;
 
         protected RectTransform currentPanel;
 
@@ -37,20 +30,19 @@ namespace UnityStandardAssets.Network
         public Text statusInfo;
         public Text hostInfo;
 
-        //Client numPlayers from NetworkManager is always 0, so we count (throught connect/destroy in LobbyPlayer) the number
-        //of players, so that even client know how many player there is.
-        [HideInInspector]
-        public int _playerNumber = 0;
-
         //used to disconnect a client properly when exiting the matchmaker
-        [HideInInspector]
-        public bool _isMatchmaking = false;
-
+        public bool isMatchmaking = false;
         protected bool _disconnectServer = false;
         
         protected ulong _currentMatchID;
 
         protected LobbyHook _lobbyHooks;
+
+        void Awake()
+        {
+            if (FindObjectsOfType<LobbyManager>().Length > 1)
+                Destroy(gameObject);
+        }
 
         void Start()
         {
@@ -68,12 +60,15 @@ namespace UnityStandardAssets.Network
 
         public override void OnLobbyClientSceneChanged(NetworkConnection conn)
         {
-            if (SceneManager.GetSceneAt(0).name == lobbyScene)
+            if (!conn.playerControllers[0].unetView.isLocalPlayer)
+                return;
+
+            if (SceneManager.GetActiveScene().name == lobbyScene)
             {
                 if (topPanel.isInGame)
                 {
                     ChangeTo(lobbyPanel);
-                    if (_isMatchmaking)
+                    if (isMatchmaking)
                     {
                         if (conn.playerControllers[0].unetView.isServer)
                         {
@@ -110,7 +105,7 @@ namespace UnityStandardAssets.Network
 
                 Destroy(GameObject.Find("MainMenuUI(Clone)"));
 
-                //backDelegate = StopGameClbk;
+                backDelegate = StopGameClbk;
                 topPanel.isInGame = true;
                 topPanel.ToggleVisibility(false);
             }
@@ -138,7 +133,7 @@ namespace UnityStandardAssets.Network
             {
                 backButton.gameObject.SetActive(false);
                 SetServerInfo("Offline", "None");
-                _isMatchmaking = false;
+                isMatchmaking = false;
             }
         }
 
@@ -164,24 +159,14 @@ namespace UnityStandardAssets.Network
 
         // ----------------- Server management
 
-        public void AddLocalPlayer()
-        {
-            TryToAddPlayer();
-        }
-
-        public void RemovePlayer(LobbyPlayer player)
-        {
-            player.RemovePlayer();
-        }
-
         public void SimpleBackClbk()
         {
             ChangeTo(mainMenuPanel);
         }
-                 
+
         public void StopHostClbk()
         {
-            if (_isMatchmaking)
+            if (isMatchmaking)
             {
                 this.matchMaker.DestroyMatch((NetworkID)_currentMatchID, OnMatchDestroyed);
                 _disconnectServer = true;
@@ -199,7 +184,7 @@ namespace UnityStandardAssets.Network
         {
             StopClient();
 
-            if (_isMatchmaking)
+            if (isMatchmaking)
             {
                 StopMatchMaker();
             }
@@ -213,19 +198,10 @@ namespace UnityStandardAssets.Network
             ChangeTo(mainMenuPanel);
         }
 
-        class KickMsg : MessageBase { }
-        public void KickPlayer(NetworkConnection conn)
+        public void StopGameClbk()
         {
-            conn.Send(MsgKicked, new KickMsg());
-        }
-
-
-
-
-        public void KickedMessageHandler(NetworkMessage netMsg)
-        {
-            infoPanel.Display("Kicked by Server", "Close", null);
-            netMsg.conn.Disconnect();
+            SendReturnToLobby();
+            ChangeTo(lobbyPanel);
         }
 
         //===================
@@ -237,6 +213,20 @@ namespace UnityStandardAssets.Network
             ChangeTo(lobbyPanel);
             backDelegate = StopHostClbk;
             SetServerInfo("Hosting", networkAddress);
+        }
+
+        public override void OnClientConnect(NetworkConnection conn)
+        {
+            base.OnClientConnect(conn);
+
+            infoPanel.gameObject.SetActive(false);
+
+            if (!NetworkServer.active)
+            {//only to do on pure client (not self hosting client)
+                ChangeTo(lobbyPanel);
+                backDelegate = StopClientClbk;
+                SetServerInfo("Client", networkAddress);
+            }
         }
 
         public override void OnMatchCreate(UnityEngine.Networking.Match.CreateMatchResponse matchInfo)
@@ -255,18 +245,6 @@ namespace UnityStandardAssets.Network
             }
         }
 
-        //allow to handle the (+) button to add/remove player
-        public void OnPlayersNumberModified(int count)
-        {
-            _playerNumber += count;
-
-            int localPlayerCount = 0;
-            foreach (PlayerController p in ClientScene.localPlayers)
-                localPlayerCount += (p == null || p.playerControllerId == -1) ? 0 : 1;
-
-            addPlayerButton.SetActive(localPlayerCount < maxPlayersPerConnection && _playerNumber < maxPlayers);
-        }
-
         // ----------------- Server callbacks ------------------
 
         //we want to disable the button JOIN if we don't have enough player
@@ -276,47 +254,30 @@ namespace UnityStandardAssets.Network
             GameObject obj = Instantiate(lobbyPlayerPrefab.gameObject) as GameObject;
 
             LobbyPlayer newPlayer = obj.GetComponent<LobbyPlayer>();
-            newPlayer.ToggleJoinButton(numPlayers + 1 >= minPlayers);
+            newPlayer.RpcToggleJoinButton(numPlayers + 1 >= minPlayer); ;
 
-
-            for (int i = 0; i < lobbySlots.Length; ++i)
+            for (int i = 0; i < numPlayers; ++i)
             {
                 LobbyPlayer p = lobbySlots[i] as LobbyPlayer;
 
                 if (p != null)
                 {
-                    p.RpcUpdateRemoveButton();
-                    p.ToggleJoinButton(numPlayers + 1 >= minPlayers);
+                    p.RpcToggleJoinButton(numPlayers + 1 >= minPlayer);
                 }
             }
 
             return obj;
         }
 
-        public override void OnLobbyServerPlayerRemoved(NetworkConnection conn, short playerControllerId)
-        {
-            for (int i = 0; i < lobbySlots.Length; ++i)
-            {
-                LobbyPlayer p = lobbySlots[i] as LobbyPlayer;
-
-                if (p != null)
-                {
-                    p.RpcUpdateRemoveButton();
-                    p.ToggleJoinButton(numPlayers + 1 >= minPlayers);
-                }
-            }
-        }
-
         public override void OnLobbyServerDisconnect(NetworkConnection conn)
         {
-            for (int i = 0; i < lobbySlots.Length; ++i)
+            for (int i = 0; i < numPlayers; ++i)
             {
                 LobbyPlayer p = lobbySlots[i] as LobbyPlayer;
 
                 if (p != null)
                 {
-                    p.RpcUpdateRemoveButton();
-                    p.ToggleJoinButton(numPlayers >= minPlayers);
+                    p.RpcToggleJoinButton(numPlayers >= minPlayer);
                 }
             }
 
@@ -333,7 +294,10 @@ namespace UnityStandardAssets.Network
             return true;
         }
 
+
         // --- Countdown management
+
+        static protected float _matchStartCountdown = 5.0f;
 
         public override void OnLobbyServerPlayersReady()
         {
@@ -342,24 +306,24 @@ namespace UnityStandardAssets.Network
 
         public IEnumerator ServerCountdownCoroutine()
         {
-            float remainingTime = prematchCountdown;
+            float remainingTime = _matchStartCountdown;
             int floorTime = Mathf.FloorToInt(remainingTime);
 
-            while (remainingTime > 0)
+            while(remainingTime > 0)
             {
                 yield return null;
 
                 remainingTime -= Time.deltaTime;
                 int newFloorTime = Mathf.FloorToInt(remainingTime);
 
-                if (newFloorTime != floorTime)
-                {//to avoid flooding the network of message, we only send a notice to client when the number of plain seconds change.
+                if(newFloorTime != floorTime)
+                {//to avoid flooding the network of message, we only send a notice to cleint when the number of second do change.
                     floorTime = newFloorTime;
 
                     for (int i = 0; i < lobbySlots.Length; ++i)
                     {
                         if (lobbySlots[i] != null)
-                        {//there is maxPlayer slots, so some could be == null, need to test it before accessing!
+                        {//there is max player slot, so some could be == null, need to test it ebfore accessing!
                             (lobbySlots[i] as LobbyPlayer).RpcUpdateCountdown(floorTime);
                         }
                     }
@@ -377,24 +341,9 @@ namespace UnityStandardAssets.Network
             ServerChangeScene(playScene);
         }
 
+
+
         // ----------------- Client callbacks ------------------
-
-        public override void OnClientConnect(NetworkConnection conn)
-        {
-            base.OnClientConnect(conn);
-
-            infoPanel.gameObject.SetActive(false);
-
-            conn.RegisterHandler(MsgKicked, KickedMessageHandler);
-
-            if (!NetworkServer.active)
-            {//only to do on pure client (not self hosting client)
-                ChangeTo(lobbyPanel);
-                backDelegate = StopClientClbk;
-                SetServerInfo("Client", networkAddress);
-            }
-        }
-
 
         public override void OnClientDisconnect(NetworkConnection conn)
         {

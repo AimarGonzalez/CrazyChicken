@@ -11,10 +11,11 @@ namespace UnityStandardAssets.Network
         public Text buttonText;
         public Button singleButton;
 
-        public void Display(string info, string buttonInfo, UnityEngine.Events.UnityAction buttonClbk)
+        public void Display(string info, string buttonInfo, UnityEngine.Events.UnityAction buttonClbk, bool displayButton = true)
         {
             infoText.text = info;
 
+            singleButton.gameObject.SetActive(displayButton);
             buttonText.text = buttonInfo;
 
             singleButton.onClick.RemoveAllListeners();

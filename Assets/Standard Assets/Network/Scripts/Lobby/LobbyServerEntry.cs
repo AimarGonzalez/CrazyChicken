@@ -29,10 +29,10 @@ namespace UnityStandardAssets.Network
 
         void JoinMatch(NetworkID networkID, LobbyManager lobbyManager)
         {
+            lobbyManager.DisplayIsConnecting();
             lobbyManager.matchMaker.JoinMatch(networkID, "", lobbyManager.OnMatchJoined);
             lobbyManager.backDelegate = lobbyManager.StopClientClbk;
-            lobbyManager._isMatchmaking = true;
-            lobbyManager.DisplayIsConnecting();
+            lobbyManager.isMatchmaking = true;
         }
     }
 }

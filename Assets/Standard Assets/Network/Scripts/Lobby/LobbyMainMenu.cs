@@ -65,7 +65,7 @@ namespace UnityStandardAssets.Network
                 lobbyManager.OnMatchCreate);
 
             lobbyManager.backDelegate = lobbyManager.StopHost;
-            lobbyManager._isMatchmaking = true;
+            lobbyManager.isMatchmaking = true;
             lobbyManager.DisplayIsConnecting();
 
             lobbyManager.SetServerInfo("Matchmaker Host", lobbyManager.matchHost);
