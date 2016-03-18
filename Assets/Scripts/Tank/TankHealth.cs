@@ -59,6 +59,7 @@ public class TankHealth : NetworkBehaviour
     void OnCurrentHealthChanged(float value)
     {
         m_CurrentHealth = value;
+
         // Change the UI elements appropriately.
         SetHealthUI();
 
