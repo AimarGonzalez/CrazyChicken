@@ -15,7 +15,7 @@ public class TankRandomMovement : NetworkBehaviour
     public Vector3 m_destination = Vector3.zero;
 
 
-    public float movementDestinationMin = 0f;
+    public float movementDestinationMin = -15f;
     public float movementDestinationMax = 15f;
 
 
@@ -49,18 +49,11 @@ public class TankRandomMovement : NetworkBehaviour
     private void Move()
     {
         // Create a movement vector based on the input, speed and the time between frames, in the direction the tank is facing.
-
-        float distanceToTarget = Vector3.Distance(m_Rigidbody.position, m_destination);
-        if (distanceToTarget < 10f)
+        float distanceToTarget = Vector3.Distance(m_Rigidbody.position, agent.destination);
+        if (distanceToTarget < 0.5f)
         {
-            m_destination = GetNewDestination();
+            agent.destination = m_destination = GetNewDestination();
         }
-
-        if (distanceToTarget > 1f) { 
-            agent.destination = m_destination;
-            
-        }
-
 
         //Metodo 2:
         /*

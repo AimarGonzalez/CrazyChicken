@@ -443,6 +443,7 @@ GameObject:
   - 114: {fileID: 11421950}
   - 114: {fileID: 11467398}
   - 195: {fileID: 19548116}
+  - 136: {fileID: 13645346}
   m_Layer: 9
   m_Name: CompleteTank
   m_TagString: Untagged
@@ -703,7 +704,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.074913, y: 0.054908276, z: -14.06332}
+  m_LocalPosition: {x: 4.2913704, y: 1.0010376, z: 7.0800323}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 421410}
@@ -1441,7 +1442,7 @@ BoxCollider:
   m_GameObject: {fileID: 173472}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1, z: 2}
   m_Center: {x: 0, y: 0.5, z: 0}
@@ -1621,7 +1622,7 @@ Animator:
   m_GameObject: {fileID: 159390}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c636c66bd8b036949941794b7572e59b, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f33207a15e3fd6741b3439e7487666f9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2160,6 +2161,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!136 &13645346
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173472}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.18
+  m_Height: 1.93
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.26, z: 0}
 --- !u!195 &19548116
 NavMeshAgent:
   m_ObjectHideFlags: 1
