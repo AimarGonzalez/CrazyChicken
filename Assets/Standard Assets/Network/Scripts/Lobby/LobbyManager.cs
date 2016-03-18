@@ -60,7 +60,7 @@ namespace UnityStandardAssets.Network
 
             DontDestroyOnLoad(gameObject);
 
-            SetServerInfo("Offline", "None");
+            SetServerInfo("", "");
 
             ShowIpAddress();
         }
@@ -158,7 +158,7 @@ namespace UnityStandardAssets.Network
             else
             {
                 backButton.gameObject.SetActive(false);
-                SetServerInfo("Offline", "None");
+                SetServerInfo("", "");
                 isMatchmaking = false;
             }
         }
@@ -172,7 +172,7 @@ namespace UnityStandardAssets.Network
         public void SetServerInfo(string status, string host)
         {
             statusInfo.text = status;
-            hostInfo.text = host;
+            hostInfo.text = host.Length != 0 ? "("+host+")" : host;
         }
 
 
@@ -238,7 +238,7 @@ namespace UnityStandardAssets.Network
 
             ChangeTo(lobbyPanel);
             backDelegate = StopHostClbk;
-            SetServerInfo("Hosting", networkAddress);
+            SetServerInfo("Hosting", GetLocalIPAddress());
         }
 
         public override void OnClientConnect(NetworkConnection conn)
