@@ -18,7 +18,7 @@ public class TankManager
     [HideInInspector]
     public GameObject m_TankRenderers;        // The transform that is a parent of all the tank's renderers.  This is deactivated when the tank is dead.
     [HideInInspector]
-    public int m_Wins;                        // The number of wins this player has so far.
+    public int m_Kills;                        // The number of kills this player has so far.
     [HideInInspector]
     public string m_PlayerName;                    // The player name set in the lobby
     [HideInInspector]

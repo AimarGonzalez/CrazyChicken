@@ -6,6 +6,7 @@ public class TankShooting : NetworkBehaviour
 {
     public int m_PlayerNumber = 1;            // Used to identify the different players.
     public Rigidbody m_Shell;                 // Prefab of the shell.
+    public Rigidbody m_AreaDamage;            // Prefab of the areaDamage.
     public Transform m_FireTransform;         // A child of the tank where the shells are spawned.
     public Slider m_AimSlider;                // A child of the tank that displays the current launch force.
     public AudioSource m_ShootingAudio;       // Reference to the audio source used to play the shooting audio. NB: different to the movement audio source.
@@ -14,6 +15,8 @@ public class TankShooting : NetworkBehaviour
     public float m_MinLaunchForce = 15f;      // The force given to the shell if the fire button is not held.
     public float m_MaxLaunchForce = 30f;      // The force given to the shell if the fire button is held for the max charge time.
     public float m_MaxChargeTime = 0.75f;     // How long the shell can charge for before it is fired at max force.
+    public float m_areaDamageDistance = 3.0f;
+    public int m_areaDamageAmount = 30;
 
     [SyncVar]
     public int m_localID;
@@ -47,7 +50,7 @@ public class TankShooting : NetworkBehaviour
     {
         if (!isLocalPlayer)
             return;
-
+        /*
         // The slider should have a default value of the minimum launch force.
         m_AimSlider.value = m_MinLaunchForce;
 
@@ -82,6 +85,30 @@ public class TankShooting : NetworkBehaviour
         {
             // ... launch the shell.
             Fire();
+        }
+       */ 
+
+
+
+        if (Input.GetButtonDown(m_FireButton))
+        {
+            // Rigidbody areaDamageInstance = Instantiate(m_AreaDamage, m_FireTransform.position, m_FireTransform.rotation) as Rigidbody;
+            // areaDamageInstance.GetComponent<AreaDamage>().m_playerAttacking = m_localID;
+            // NetworkServer.Spawn(areaDamageInstance.gameObject);
+
+            GameObject[] pollos = GameObject.FindGameObjectsWithTag("Tank");
+            Vector3 myPosition = GetComponent<Rigidbody>().transform.position;
+
+
+            foreach (GameObject pollo in pollos)
+            {
+                float distanceToPollo = (pollo.transform.position - myPosition).sqrMagnitude;
+
+                if(distanceToPollo > 0.01 && distanceToPollo < m_areaDamageDistance)
+                {
+                    pollo.GetComponent<TankHealth>().Damage(m_areaDamageAmount);
+                }
+            }
         }
     }
 

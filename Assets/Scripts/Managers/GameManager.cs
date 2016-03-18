@@ -12,7 +12,7 @@ public class GameManager : NetworkBehaviour
     //this is static so tank can be added even withotu the scene loaded (i.e. from lobby)
     static public List<TankManager> m_Tanks = new List<TankManager>();             // A collection of managers for enabling and disabling different aspects of the tanks.
 
-    public int m_NumRoundsToWin = 5;          // The number of rounds a single player has to win to win the game.
+    public int m_NumKillsToWin = 20;          // The number of rounds a single player has to win to win the game.
     public float m_StartDelay = 3f;           // The delay between the start of RoundStarting and RoundPlaying phases.
     public float m_EndDelay = 3f;             // The delay between the end of RoundPlaying and RoundEnding phases.
     public CameraControl m_CameraControl;     // Reference to the CameraControl script for control during different phases.
@@ -250,8 +250,8 @@ public class GameManager : NetworkBehaviour
         m_RoundWinner = GetRoundWinner();
 
         // If there is a winner, increment their score.
-        if (m_RoundWinner != null)
-            m_RoundWinner.m_Wins++;
+        //if (m_RoundWinner != null)
+        //    m_RoundWinner.m_Kills++;
 
         // Now the winner's score has been incremented, see if someone has one the game.
         m_GameWinner = GetGameWinner();
@@ -335,13 +335,13 @@ public class GameManager : NetworkBehaviour
         // Go through all the tanks...
         for (int i = 0; i < m_Tanks.Count; i++)
         {
-            if(m_Tanks[i].m_Wins > maxScore)
+            if(m_Tanks[i].m_Kills > maxScore)
             {
-                maxScore = m_Tanks[i].m_Wins;
+                maxScore = m_Tanks[i].m_Kills;
             }
 
             // ... and if one of them has enough rounds to win the game, return it.
-            if (m_Tanks[i].m_Wins == m_NumRoundsToWin)
+            if (m_Tanks[i].m_Kills == m_NumKillsToWin)
                 return m_Tanks[i];
         }
 
@@ -349,7 +349,7 @@ public class GameManager : NetworkBehaviour
         //(note : we don't enter it if the maxScore is 0, as no one is current leader yet!)
         for (int i = 0; i < m_Tanks.Count && maxScore > 0; i++)
         {
-            m_Tanks[i].SetLeader(maxScore == m_Tanks[i].m_Wins);
+            m_Tanks[i].SetLeader(maxScore == m_Tanks[i].m_Kills);
         }
 
         // If no tanks have enough rounds to win, return null.
@@ -377,7 +377,7 @@ public class GameManager : NetworkBehaviour
         // Go through all the tanks and display their scores with their 'PLAYER #' in their color.
         for (int i = 0; i < m_Tanks.Count; i++)
         {
-            message += "<color=#" + ColorUtility.ToHtmlStringRGB(m_Tanks[i].m_PlayerColor) + ">" + m_Tanks[i].m_PlayerName + "</color>: " + m_Tanks[i].m_Wins + " WINS " 
+            message += "<color=#" + ColorUtility.ToHtmlStringRGB(m_Tanks[i].m_PlayerColor) + ">" + m_Tanks[i].m_PlayerName + "</color>: " + m_Tanks[i].m_Kills + " WINS " 
                 + (m_Tanks[i].IsReady()? "<size=15>READY</size>" : "") + " \n";
         }
 
