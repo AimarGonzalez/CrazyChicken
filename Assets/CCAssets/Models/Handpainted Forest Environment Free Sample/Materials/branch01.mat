@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: PajaText
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: branch01
+  m_Shader: {fileID: 50, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 3cfc6d70c75fd9c418b8884a58ec5837, type: 3}
+          m_Texture: {fileID: 2800000, guid: 5b8dbbf8c77d0f34cbcfc4bb5e0fb98f, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -31,108 +31,95 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _DetailNormalMap
+          name: _GlossMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _ParallaxMap
+          name: _TranslucencyMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _OcclusionMap
+          name: _ShadowOffset
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 07b6c5f871ffaae469366cf28a43a777, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _EmissionMap
+          name: _Diffuse
         second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _DetailMask
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _DetailAlbedoMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _MetallicGlossMap
-        second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 07b6c5f871ffaae469366cf28a43a777, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
-          name: _SrcBlend
-        second: 1
-      data:
-        first:
-          name: _DstBlend
-        second: 0
-      data:
-        first:
           name: _Cutoff
-        second: 0.5
+        second: 0.78571403
       data:
         first:
-          name: _Parallax
-        second: 0.02
+          name: _Shininess
+        second: 0.01
       data:
         first:
-          name: _ZWrite
-        second: 1
-      data:
-        first:
-          name: _Glossiness
+          name: _Occlusion
         second: 0
       data:
         first:
-          name: _BumpScale
+          name: _InvFade
         second: 1
       data:
         first:
-          name: _OcclusionStrength
+          name: _BaseLight
+        second: 0.51785713
+      data:
+        first:
+          name: _AO
+        second: 0
+      data:
+        first:
+          name: _SquashAmount
         second: 1
       data:
         first:
-          name: _DetailNormalMapScale
+          name: _TranslucencyViewDependency
         second: 1
       data:
         first:
-          name: _UVSec
+          name: _ShadowStrength
         second: 0
       data:
         first:
-          name: _Mode
-        second: 0
-      data:
-        first:
-          name: _Metallic
-        second: 0
+          name: _test
+        second: 9.021464
     m_Colors:
       data:
         first:
-          name: _EmissionColor
-        second: {r: 0, g: 0, b: 0, a: 1}
+          name: _Scale
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _Color
-        second: {r: 0.89705884, g: 0.8529337, b: 0.2572448, a: 1}
+        second: {r: 0.74264705, g: 0.71813065, b: 0.23480752, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _Emission
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _TintColor
+        second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+      data:
+        first:
+          name: _TranslucencyColor
+        second: {r: 1, g: 1, b: 1, a: 1}
