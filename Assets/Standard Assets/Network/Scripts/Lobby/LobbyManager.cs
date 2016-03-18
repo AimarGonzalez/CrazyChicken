@@ -38,6 +38,9 @@ namespace UnityStandardAssets.Network
 
         protected LobbyHook _lobbyHooks;
 
+        public Text networkAddressLabel;
+        public Text serverBindAddressLabel;
+
         void Awake()
         {
             if (FindObjectsOfType<LobbyManager>().Length > 1)
@@ -56,6 +59,9 @@ namespace UnityStandardAssets.Network
             DontDestroyOnLoad(gameObject);
 
             SetServerInfo("Offline", "None");
+
+            networkAddressLabel.text = networkAddress;
+            serverBindAddressLabel.text = serverBindAddress;
         }
 
         public override void OnLobbyClientSceneChanged(NetworkConnection conn)
