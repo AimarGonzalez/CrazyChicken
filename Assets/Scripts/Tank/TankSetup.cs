@@ -50,8 +50,11 @@ public class TankSetup : NetworkBehaviour
             renderers[i].material.color = m_Color;
         }
 
-        if (m_TankRenderers)
-            m_TankRenderers.SetActive(false);
+        if(GameManager.DEBUG_MODE == false)
+        {
+            if (m_TankRenderers)
+                m_TankRenderers.SetActive(false);
+        }
 
         m_NameText.text = "<color=#" + ColorUtility.ToHtmlStringRGB(m_Color) + ">"+m_PlayerName+"</color>";
         m_Crown.SetActive(false);
