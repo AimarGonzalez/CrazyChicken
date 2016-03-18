@@ -10,6 +10,7 @@ public class TankRandomMovement : NetworkBehaviour
     public Rigidbody m_Rigidbody;              // Reference used to move the tank.
 
     public float m_Speed = 2f;
+    public float m_MaizEffectDistance = 10f;
 
     NavMeshAgent agent;
     public Vector3 m_destination = Vector3.zero;
@@ -71,7 +72,52 @@ public class TankRandomMovement : NetworkBehaviour
 
     private Vector3 GetNewDestination()
     {
-        return new Vector3(Random.Range(movementDestinationMin, movementDestinationMax), 0, Random.Range(movementDestinationMin, movementDestinationMax));
+        Vector3 newDestination;
+
+        GameObject maiz = GetClosestMaiz();
+        if (maiz)
+        {
+            newDestination = maiz.transform.position;
+        }
+        else
+        {
+            //random
+            newDestination = GetRandomPosition();
+        }
+        return newDestination;
+    }
+
+    private Vector3 GetRandomPosition()
+    {
+        Vector3 newPosition;
+        do
+        {
+            newPosition = new Vector3(Random.Range(movementDestinationMin, movementDestinationMax), 0, Random.Range(movementDestinationMin, movementDestinationMax));
+
+        } while (Vector3.Distance(newPosition, m_Rigidbody.position) < 5f);
+
+        return newPosition;
+    }
+
+    private GameObject GetClosestMaiz()
+    {
+        GameObject[] maizes = GameObject.FindGameObjectsWithTag("Maiz");
+        float minDistance = 9999;
+        GameObject closestMaiz = null;
+        foreach(GameObject maiz in maizes)
+        {
+            float distance = Vector3.Distance(maiz.transform.position, m_Rigidbody.position);
+            if (distance < m_MaizEffectDistance)
+            {
+                if(distance < minDistance)
+                {
+                    closestMaiz = maiz;
+                    minDistance = distance;
+                }
+            }
+        }
+
+        return closestMaiz;
     }
 
     public void SetDefaults()
