@@ -5,6 +5,9 @@ using UnityEngine.Networking;
 using UnityEngine.Networking.Types;
 using UnityEngine.Networking.Match;
 using System.Collections;
+ using System.Net;
+ using System.Net.Sockets;
+ using System.Linq;
 
 
 namespace UnityStandardAssets.Network
@@ -39,7 +42,6 @@ namespace UnityStandardAssets.Network
         protected LobbyHook _lobbyHooks;
 
         public Text networkAddressLabel;
-        public Text serverBindAddressLabel;
 
         void Awake()
         {
@@ -58,10 +60,28 @@ namespace UnityStandardAssets.Network
 
             DontDestroyOnLoad(gameObject);
 
-            SetServerInfo("Offline", "None");
+            SetServerInfo("", "");
 
-            networkAddressLabel.text = networkAddress;
-            serverBindAddressLabel.text = serverBindAddress;
+            ShowIpAddress();
+        }
+
+        private void ShowIpAddress()
+        {
+            //networkAddressLabel.text = networkAddress; //out: localhost
+            networkAddressLabel.text = GetLocalIPAddress();
+        }
+
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            return "Local IP Address Not Found!";
         }
 
         public override void OnLobbyClientSceneChanged(NetworkConnection conn)
@@ -138,7 +158,7 @@ namespace UnityStandardAssets.Network
             else
             {
                 backButton.gameObject.SetActive(false);
-                SetServerInfo("Offline", "None");
+                SetServerInfo("", "");
                 isMatchmaking = false;
             }
         }
@@ -152,7 +172,7 @@ namespace UnityStandardAssets.Network
         public void SetServerInfo(string status, string host)
         {
             statusInfo.text = status;
-            hostInfo.text = host;
+            hostInfo.text = host.Length != 0 ? "("+host+")" : host;
         }
 
 
@@ -218,7 +238,7 @@ namespace UnityStandardAssets.Network
 
             ChangeTo(lobbyPanel);
             backDelegate = StopHostClbk;
-            SetServerInfo("Hosting", networkAddress);
+            SetServerInfo("Hosting", GetLocalIPAddress());
         }
 
         public override void OnClientConnect(NetworkConnection conn)
