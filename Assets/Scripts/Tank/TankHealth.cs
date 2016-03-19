@@ -35,6 +35,11 @@ public class TankHealth : NetworkBehaviour
     // This is called whenever the tank takes damage.
     public void Damage(float amount)
     {
+		if(!isServer)
+		{
+			return;
+		}
+
         // Reduce current health by the amount of damage done.
         m_CurrentHealth -= amount;
 

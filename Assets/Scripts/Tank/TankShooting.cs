@@ -17,6 +17,9 @@ public class TankShooting : NetworkBehaviour
     public float m_MaxChargeTime = 0.75f;     // How long the shell can charge for before it is fired at max force.
     public float m_areaDamageDistance = 3.0f;
     public int m_areaDamageAmount = 30;
+	private float m_timeWhenKickIsAvailable;
+	public float m_kickCooldownTime = 3.0f;
+
 
     [SyncVar]
     public int m_localID;
@@ -27,11 +30,7 @@ public class TankShooting : NetworkBehaviour
     private float m_CurrentLaunchForce;     // The force that will be given to the shell when the fire button is released.
     [SyncVar]
     private float m_ChargeSpeed;            // How fast the launch force increases, based on the max charge time.
-    private bool m_Fired;                   // Whether or not the shell has been launched with this button press.
     public GameObject m_plumasParticles;
-
-    [SyncVar]
-    public bool m_shouldKick;
 
     private void Awake()
     {
@@ -47,8 +46,6 @@ public class TankShooting : NetworkBehaviour
 
         // The rate that the launch force charges up is the range of possible forces by the max charge time.
         m_ChargeSpeed = (m_MaxLaunchForce - m_MinLaunchForce) / m_MaxChargeTime;
-
-        m_shouldKick = false;
     }
 
     [ClientCallback]
@@ -56,129 +53,43 @@ public class TankShooting : NetworkBehaviour
     {
         if (!isLocalPlayer)
         {
-            if (m_shouldKick)
-            {
-                Kick();
-                m_shouldKick = false;
-                //StopKick();
-            }
+			return;
         }
         else
         {
-            /*
-            // The slider should have a default value of the minimum launch force.
-            m_AimSlider.value = m_MinLaunchForce;
-
-            // If the max force has been exceeded and the shell hasn't yet been launched...
-            if (m_CurrentLaunchForce >= m_MaxLaunchForce && !m_Fired)
+			if (Input.GetButtonDown(m_FireButton) && (Time.time >= m_timeWhenKickIsAvailable))
             {
-                // ... use the max force and launch the shell.
-                m_CurrentLaunchForce = m_MaxLaunchForce;
-                Fire();
-            }
-            // Otherwise, if the fire button has just started being pressed...
-            else if (Input.GetButtonDown(m_FireButton))
-            {
-                // ... reset the fired flag and reset the launch force.
-                m_Fired = false;
-                m_CurrentLaunchForce = m_MinLaunchForce;
-
-                // Change the clip to the charging clip and start it playing.
-                m_ShootingAudio.clip = m_ChargingClip;
-                m_ShootingAudio.Play();
-            }
-            // Otherwise, if the fire button is being held and the shell hasn't been launched yet...
-            else if (Input.GetButton(m_FireButton) && !m_Fired)
-            {
-                // Increment the launch force and update the slider.
-                m_CurrentLaunchForce += m_ChargeSpeed * Time.deltaTime;
-
-                m_AimSlider.value = m_CurrentLaunchForce;
-            }
-            // Otherwise, if the fire button is released and the shell hasn't been launched yet...
-            else if (Input.GetButtonUp(m_FireButton) && !m_Fired)
-            {
-                // ... launch the shell.
-                Fire();
-            }
-           */
-
-
-
-            if (Input.GetButtonDown(m_FireButton) && !m_shouldKick)
-            {
-                // Rigidbody areaDamageInstance = Instantiate(m_AreaDamage, m_FireTransform.position, m_FireTransform.rotation) as Rigidbody;
-                // areaDamageInstance.GetComponent<AreaDamage>().m_playerAttacking = m_localID;
-                // NetworkServer.Spawn(areaDamageInstance.gameObject);
-
-                CmdKick();
-                Kick();
+				CmdKick();
+				m_timeWhenKickIsAvailable = Time.time + m_kickCooldownTime;
             }
         }
     }
 
-    private void Fire()
-    {
-        // Set the fired flag so only Fire is only called once.
-        m_Fired = true;
+	[Command]
+	public void CmdKick()
+	{
+		RpcKick ();
+	}
 
-        // Change the clip to the firing clip and play it.
-        m_ShootingAudio.clip = m_FireClip;
-        m_ShootingAudio.Play();
-
-        CmdFire(m_Rigidbody.velocity, m_CurrentLaunchForce, m_FireTransform.forward, m_FireTransform.position, m_FireTransform.rotation);
-
-        // Reset the launch force.  This is a precaution in case of missing button events.
-        m_CurrentLaunchForce = m_MinLaunchForce;
-    }
-
-    [Command]
-    private void CmdFire(Vector3 rigidbodyVelocity, float launchForce, Vector3 forward, Vector3 position, Quaternion rotation)
-    {
-        // Create an instance of the shell and store a reference to it's rigidbody.
-        Rigidbody shellInstance =
-             Instantiate(m_Shell, position, rotation) as Rigidbody;
-
-        // Create a velocity that is the tank's velocity and the launch force in the fire position's forward direction.
-        Vector3 velocity = rigidbodyVelocity + launchForce * forward;
-
-        // Set the shell's velocity to this velocity.
-        shellInstance.velocity = velocity;
-
-        NetworkServer.Spawn(shellInstance.gameObject);
-    }
-
-    [Command]
-    private void CmdKick()
-    {
-        m_shouldKick = true;
-    }
-
-    //[Command]
-    //private void StopKick()
-    //{
-    //   m_shouldKick = false;
-    //}
-
-    private void Kick()
-    {
-        GameObject[] pollos = GameObject.FindGameObjectsWithTag("Tank");
-        Vector3 myPosition = GetComponent<Rigidbody>().transform.position;
+	[ClientRpc]
+	public void RpcKick()
+	{
+		GameObject[] pollos = GameObject.FindGameObjectsWithTag ("Tank");
+		Vector3 myPosition = GetComponent<Rigidbody> ().transform.position;
 
 
-        foreach (GameObject pollo in pollos)
-        {
-            float distanceToPollo = (pollo.transform.position - myPosition).sqrMagnitude;
+		foreach (GameObject pollo in pollos) {
+			float distanceToPollo = (pollo.transform.position - myPosition).sqrMagnitude;
 
-            if (distanceToPollo > 0.01 && distanceToPollo < m_areaDamageDistance)
-            {
-                pollo.GetComponent<TankHealth>().Damage(m_areaDamageAmount);
-                GameObject plumasInstance = Instantiate(m_plumasParticles, pollo.transform.position + new Vector3(0, 2, 0), pollo.transform.rotation) as GameObject;
-            }
-        }
+			if (distanceToPollo > 0.01 && distanceToPollo < m_areaDamageDistance) {
+				pollo.GetComponent<TankHealth> ().Damage (m_areaDamageAmount);
+				GameObject plumasInstance = Instantiate (m_plumasParticles, pollo.transform.position + new Vector3 (0, 2, 0), pollo.transform.rotation) as GameObject;
+				Destroy (plumasInstance, 1.0f);
+			}
 
-        transform.FindChild("Chicken").GetComponent<Animator>().SetTrigger("KickTrigger");
-    }
+			transform.FindChild ("Chicken").GetComponent<Animator> ().SetTrigger ("KickTrigger");
+		}
+	}
 
     // This is used by the game manager to reset the tank.
     public void SetDefaults()
