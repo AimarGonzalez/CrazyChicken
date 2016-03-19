@@ -444,6 +444,7 @@ GameObject:
   - 114: {fileID: 11467398}
   - 195: {fileID: 19548116}
   - 136: {fileID: 13645346}
+  - 114: {fileID: 11477710}
   m_Layer: 9
   m_Name: CompleteTank
   m_TagString: Tank
@@ -2015,6 +2016,18 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 64
+--- !u!114 &11477710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33246ba9fafdd9c46bd6de7892011c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maizPrefab: {fileID: 0}
 --- !u!114 &11482748
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2087,9 +2100,9 @@ MonoBehaviour:
   m_MaxChargeTime: 0.75
   m_areaDamageDistance: 30
   m_areaDamageAmount: 30
+  m_kickCooldownTime: 3
   m_localID: 0
   m_plumasParticles: {fileID: 136926, guid: 14d2025a6af91f149b7579f642581574, type: 2}
-  m_shouldKick: 0
 --- !u!114 &11490040
 MonoBehaviour:
   m_ObjectHideFlags: 1

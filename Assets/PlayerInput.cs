@@ -4,9 +4,8 @@ using UnityEngine.Networking;
 
 public class PlayerInput : NetworkBehaviour
 {
-
-    private bool farmer1Activated = false;
-    private bool farmer2Activated = false;
+	private GameObject m_localPlayer;
+	private bool farmer1Activated = false;
 
     public GameObject maiz;
 
@@ -21,14 +20,16 @@ public class PlayerInput : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
-        ClientScene.RegisterPrefab(maiz);
+
+		GameObject[] pollos = GameObject.FindGameObjectsWithTag ("Tank");
+		m_localPlayer = pollos[0];
     }
 
     // Update is called once per frame
     void Update () {
 	    if(farmer1Activated)
         {
-            CmdDoFarmer1();
+            doFarmer1();
         }
 	}
 
@@ -45,18 +46,9 @@ public class PlayerInput : NetworkBehaviour
     public void Farmer1()
     {
         farmer1Activated = true;
-        CancelFarmer2();
     }
-
-    [Command]
-    public void CmdSpawnMaiz(Vector3 hitPos)
-    {
-        GameObject nuevoMaiz = (GameObject)Instantiate(maiz, hitPos, Quaternion.identity);
-        NetworkServer.Spawn(nuevoMaiz);
-    }
-
    
-    public void CmdDoFarmer1()
+    public void doFarmer1()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -69,11 +61,19 @@ public class PlayerInput : NetworkBehaviour
 
            if (Physics.Raycast(ray, out hit, 100))
            {
-                Debug.DrawLine(ray.origin, hit.point);
+                //Debug.DrawLine(ray.origin, hit.point);
                 if (hit.collider.name == "Terrain")
                 {
                     print("maiz!");
-                    CmdSpawnMaiz(hit.point);
+
+					GameObject[] pollos = GameObject.FindGameObjectsWithTag ("Tank");
+					foreach(GameObject pollo in pollos)
+					{
+						if (pollo.GetComponent<NetworkIdentity> ().isLocalPlayer) {
+							m_localPlayer = pollo;
+						}
+					}
+					m_localPlayer.GetComponent<TankItemSpawner>().SpawnMaiz(hit.point);
 
                     CancelFarmer1();
                 }
@@ -81,9 +81,7 @@ public class PlayerInput : NetworkBehaviour
                 {
                     print("arbol!");
                 }
-
             }
-
         }
 
         /*
@@ -111,18 +109,6 @@ public class PlayerInput : NetworkBehaviour
     public void CancelFarmer1()
     {
         farmer1Activated = false;
-        //algo mas
-    }
-
-    public void Farmer2()
-    {
-        farmer2Activated = true;
-        CancelFarmer1();
-    }
-
-    public void CancelFarmer2()
-    {
-        farmer2Activated = false;
         //algo mas
     }
 }
