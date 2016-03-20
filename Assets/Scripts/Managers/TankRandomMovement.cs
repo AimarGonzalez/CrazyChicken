@@ -12,18 +12,20 @@ public class TankRandomMovement : NetworkBehaviour
     public float m_Speed = 2f;
     public float m_MaizEffectDistance = 10f;
 
-    NavMeshAgent agent;
+    NavMeshAgent m_agent;
     public Vector3 m_destination = Vector3.zero;
 
 
     public float movementDestinationMin = -15f;
     public float movementDestinationMax = 15f;
 
+	public float pathEndThreshold = 0.1f;
+	private bool m_hasPath = false;
 
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        agent = GetComponent<NavMeshAgent>();
+        m_agent = GetComponent<NavMeshAgent>();
     }
 
     // Use this for initialization
@@ -50,10 +52,11 @@ public class TankRandomMovement : NetworkBehaviour
     private void Move()
     {
         // Create a movement vector based on the input, speed and the time between frames, in the direction the tank is facing.
-        float distanceToTarget = Vector3.Distance(m_Rigidbody.position, agent.destination);
-        if (distanceToTarget < 0.5f)
+        //float distanceToTarget = Vector3.Distance(m_Rigidbody.position, agent.destination);
+
+		if (AtEndOfPath())
         {
-            agent.destination = m_destination = GetNewDestination();
+			m_agent.SetDestination(GetNewDestination());
         }
 
         //Metodo 2:
@@ -69,6 +72,19 @@ public class TankRandomMovement : NetworkBehaviour
             m_Rigidbody.MovePosition(m_Rigidbody.position + movement);
         */
     }
+
+	bool AtEndOfPath()
+	{
+		//m_hasPath |= m_agent.hasPath;
+		if (m_agent.remainingDistance <= m_agent.stoppingDistance + pathEndThreshold )
+		{
+			// Arrived
+			m_hasPath = false;
+			return true;
+		}
+
+		return false;
+	}
 
     private Vector3 GetNewDestination()
     {
@@ -90,11 +106,11 @@ public class TankRandomMovement : NetworkBehaviour
     private Vector3 GetRandomPosition()
     {
         Vector3 newPosition;
-        do
-        {
+       // do
+       // {
             newPosition = new Vector3(Random.Range(movementDestinationMin, movementDestinationMax), 0, Random.Range(movementDestinationMin, movementDestinationMax));
 
-        } while (Vector3.Distance(newPosition, m_Rigidbody.position) < 5f);
+       // } while (Vector3.Distance(newPosition, m_Rigidbody.position) < 5f);
 
         return newPosition;
     }

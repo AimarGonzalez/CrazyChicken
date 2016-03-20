@@ -23,12 +23,12 @@ public class TankHealth : NetworkBehaviour
     private float m_CurrentHealth;                  // How much health the tank currently has.*
     [SyncVar]
     private bool m_ZeroHealthHappened;              // Has the tank been reduced beyond zero health yet?
-    private BoxCollider m_Collider;                 // Used so that the tank doesn't collide with anything when it's dead.
+    //private BoxCollider m_Collider;                 // Used so that the tank doesn't collide with anything when it's dead.
 
 
     private void Awake()
     {
-        m_Collider = GetComponent<BoxCollider>();
+        //m_Collider = GetComponent<BoxCollider>();
     }
 
 
@@ -98,7 +98,7 @@ public class TankHealth : NetworkBehaviour
 
     private void SetTankActive(bool active)
     {
-        m_Collider.enabled = active;
+        //m_Collider.enabled = active;
 
         m_TankRenderers.SetActive(active);
         m_HealthCanvas.SetActive(active);

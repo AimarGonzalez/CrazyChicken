@@ -20,9 +20,6 @@ public class PlayerInput : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
-
-		GameObject[] pollos = GameObject.FindGameObjectsWithTag ("Tank");
-		m_localPlayer = pollos[0];
     }
 
     // Update is called once per frame
