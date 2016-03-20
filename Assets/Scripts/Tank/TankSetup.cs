@@ -38,7 +38,7 @@ public class TankSetup : NetworkBehaviour
         if (!isServer) //if not hosting, we had the tank to the gamemanger for easy access!
             GameManager.AddTank(gameObject, m_PlayerNumber, m_Color, m_PlayerName, m_LocalID);
 
-        GameObject m_TankRenderers = transform.Find("TankRenderers").gameObject;
+		GameObject m_TankRenderers = transform.Find("Chicken").gameObject;
 
         // Get all of the renderers of the tank.
         Renderer[] renderers = m_TankRenderers.GetComponentsInChildren<Renderer>();
