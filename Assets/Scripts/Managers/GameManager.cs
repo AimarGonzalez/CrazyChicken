@@ -18,6 +18,7 @@ public class GameManager : NetworkBehaviour
     public CameraControl m_CameraControl;     // Reference to the CameraControl script for control during different phases.
     public Text m_MessageText;                // Reference to the overlay Text to display winning text, etc.
     public GameObject m_TankPrefab;           // Reference to the prefab the players will control.
+	public GameObject m_ButtonsCanvas;
 
     public Transform[] m_SpawnPoint;
 
@@ -63,6 +64,8 @@ public class GameManager : NetworkBehaviour
     [ServerCallback]
     private void Start()
     {
+		m_ButtonsCanvas.SetActive(false);
+
         // Create the delays so they only have to be made once.
         m_StartWait = new WaitForSeconds(m_StartDelay);
         m_EndWait = new WaitForSeconds(m_EndDelay);
@@ -179,6 +182,8 @@ public class GameManager : NetworkBehaviour
     [ClientRpc]
     void RpcRoundStarting()
     {
+		m_ButtonsCanvas.SetActive(true);
+
         // As soon as the round starts reset the tanks and make sure they can't move.
         ResetAllTanks();
         DisableTankControl();
