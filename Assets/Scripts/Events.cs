@@ -4,9 +4,15 @@ using System.Collections;
 public class Events : MonoBehaviour {
 
     // Use this for initialization
-    public float Lasteventtime;
+    private float Lasteventtime;
 
     // Update is called once per frame
+    void Start()
+    {
+        Lasteventtime = 0;
+
+    }
+
     void Update()
     {
 
@@ -17,6 +23,8 @@ public class Events : MonoBehaviour {
             //Choose event
             float eventRoulette = Random.Range(0f, 2.99f);
             int eventChosen = Mathf.CeilToInt(eventRoulette);
+
+            Debug.Log(eventChosen);
 
             if (eventChosen == 0)
             {
