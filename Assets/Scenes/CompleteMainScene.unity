@@ -335,6 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Farmer1CooldownTime: 5
+  m_KickCooldownTime: 1.5
   maiz: {fileID: 146416, guid: 45248c26da710d348915060e872737fc, type: 2}
 --- !u!114 &119235757
 MonoBehaviour:
@@ -1262,7 +1263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &592912729
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2147,7 +2148,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
 --- !u!1 &1304999364
 GameObject:
   m_ObjectHideFlags: 0
@@ -3399,9 +3400,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 635c6cdb4a29e994ba1d4c40ae6509ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_DampTime: 0.2
+  m_DampTime: 1
   m_ScreenEdgeBuffer: 4
-  m_MinSize: 6.5
+  m_MinSize: 18
 --- !u!4 &1781894365 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 9e1df5e993e206f43833eae7b2a7c267, type: 3}
@@ -3476,7 +3477,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 117, y: 385.6}
+  m_AnchoredPosition: {x: 117, y: 128}
   m_SizeDelta: {x: 225.2, y: 235}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1823092404
