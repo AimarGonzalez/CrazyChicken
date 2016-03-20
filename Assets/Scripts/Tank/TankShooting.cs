@@ -82,9 +82,15 @@ public class TankShooting : NetworkBehaviour
 			float distanceToPollo = (pollo.transform.position - myPosition).sqrMagnitude;
 
 			if (distanceToPollo > 0.01 && distanceToPollo < m_areaDamageDistance) {
-				pollo.GetComponent<TankHealth> ().Damage (m_areaDamageAmount);
+				bool countKill = pollo.GetComponent<TankHealth> ().Damage (m_areaDamageAmount);
 				GameObject plumasInstance = Instantiate (m_plumasParticles, pollo.transform.position + new Vector3 (0, 2, 0), pollo.transform.rotation) as GameObject;
 				Destroy (plumasInstance, 1.0f);
+
+				//Add kill if necessary
+				if (countKill) 
+				{
+					GetComponent<TankHealth> ().m_Manager.m_Kills++;
+				}
 			}
 
 			transform.FindChild ("Chicken").GetComponent<Animator> ().SetTrigger ("KickTrigger");

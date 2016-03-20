@@ -229,11 +229,13 @@ public class GameManager : NetworkBehaviour
         RpcRoundPlaying();
 
         // While there is not one tank left...
-        while (!OneTankLeft())
-        {
+        //while (!OneTankLeft())
+        //{
             // ... return on the next frame.
-            yield return null;
-        }
+        //    yield return null;
+        //}
+
+		yield return null;
     }
 
     [ClientRpc]
@@ -248,18 +250,26 @@ public class GameManager : NetworkBehaviour
 
     private IEnumerator RoundEnding()
     {
+		int roundWinnerIndex = -1;
         // Clear the winner from the previous round.
         m_RoundWinner = null;
 
         // See if there is a winner now the round is over.
-        m_RoundWinner = GetRoundWinner();
+		while (roundWinnerIndex == -1) 
+		{
+			roundWinnerIndex = GetRoundWinner ();
+			yield return null;
+		}
+
+		m_RoundWinner = GameManager.m_Tanks[roundWinnerIndex];
 
         // If there is a winner, increment their score.
         //if (m_RoundWinner != null)
         //    m_RoundWinner.m_Kills++;
 
         // Now the winner's score has been incremented, see if someone has one the game.
-        m_GameWinner = GetGameWinner();
+		//m_GameWinner = GetGameWinner();
+		m_GameWinner = m_RoundWinner;
 
         RpcUpdateMessage(EndMessage(0));
 
@@ -317,18 +327,20 @@ public class GameManager : NetworkBehaviour
 
     // This function is to find out if there is a winner of the round.
     // This function is called with the assumption that 1 or fewer tanks are currently active.
-    private TankManager GetRoundWinner()
+    private int GetRoundWinner()
     {
-        // Go through all the tanks...
-        for (int i = 0; i < m_Tanks.Count; i++)
-        {
-            // ... and if one of them is active, it is the winner so return it.
-            if (m_Tanks[i].m_TankRenderers.activeSelf)
-                return m_Tanks[i];
-        }
+		int winnerIndex = -1;
 
+		// Go through all the tanks...
+		for (int i = 0; i < m_Tanks.Count; i++) {
+			// ... and if one of them is active, it is the winner so return it.
+			//if (m_Tanks[i].m_TankRenderers.activeSelf)
+			if (m_Tanks [i].m_Kills >= m_NumKillsToWin)
+				winnerIndex = i;
+		}
+			
         // If none of the tanks are active it is a draw so return null.
-        return null;
+		return winnerIndex;
     }
 
 
@@ -420,4 +432,10 @@ public class GameManager : NetworkBehaviour
             m_Tanks[i].DisableControl();
         }
     }
+
+	public Transform GetRandomRespawnPoint()
+	{
+		int randomIndex = Random.Range (0, m_SpawnPoint.Length - 1);
+		return m_SpawnPoint [randomIndex];
+	}
 }

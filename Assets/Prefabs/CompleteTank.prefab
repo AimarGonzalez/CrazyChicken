@@ -1693,8 +1693,8 @@ MonoBehaviour:
   m_Speed: 2
   m_MaizEffectDistance: 20
   m_destination: {x: 0, y: 0, z: 0}
-  movementDestinationMin: -15
-  movementDestinationMax: 15
+  movementDestinationMin: -5
+  movementDestinationMax: 5
   pathEndThreshold: 1
 --- !u!114 &11409376
 MonoBehaviour:
@@ -2086,8 +2086,8 @@ MonoBehaviour:
   m_MaxLaunchForce: 30
   m_MaxChargeTime: 0.75
   m_areaDamageDistance: 30
-  m_areaDamageAmount: 30
-  m_kickCooldownTime: 3
+  m_areaDamageAmount: 60
+  m_kickCooldownTime: 1.5
   m_localID: 0
   m_plumasParticles: {fileID: 136926, guid: 14d2025a6af91f149b7579f642581574, type: 2}
 --- !u!114 &11490040

@@ -21,8 +21,8 @@ public class TankHealth : NetworkBehaviour
 
     [SyncVar(hook = "OnCurrentHealthChanged")]
     private float m_CurrentHealth;                  // How much health the tank currently has.*
-    [SyncVar]
-    private bool m_ZeroHealthHappened;              // Has the tank been reduced beyond zero health yet?
+    //[SyncVar]
+    //private bool m_ZeroHealthHappened;              // Has the tank been reduced beyond zero health yet?
     //private BoxCollider m_Collider;                 // Used so that the tank doesn't collide with anything when it's dead.
 
 
@@ -33,21 +33,28 @@ public class TankHealth : NetworkBehaviour
 
 
     // This is called whenever the tank takes damage.
-    public void Damage(float amount)
+    public bool Damage(float amount)
     {
+		bool countKill = (m_CurrentHealth - amount) <= 0f;
+
 		if(!isServer)
 		{
-			return;
+			return countKill;
 		}
+
 
         // Reduce current health by the amount of damage done.
         m_CurrentHealth -= amount;
+		countKill = false;
 
         // If the current health is at or below zero and it has not yet been registered, call OnZeroHealth.
-        if (m_CurrentHealth <= 0f && !m_ZeroHealthHappened)
+        if (m_CurrentHealth <= 0f /*&& !m_ZeroHealthHappened*/)
         {
             OnZeroHealth();
+			countKill = true;
         }
+
+		return countKill;
     }
 
 
@@ -73,7 +80,7 @@ public class TankHealth : NetworkBehaviour
     private void OnZeroHealth()
     {
         // Set the flag so that this function is only called once.
-        m_ZeroHealthHappened = true;
+        //m_ZeroHealthHappened = true;
 
         RpcOnZeroHealth();
     }
@@ -81,7 +88,10 @@ public class TankHealth : NetworkBehaviour
     private void InternalOnZeroHealth()
     {
         // Disable the collider and all the appropriate child gameobjects so the tank doesn't interact or show up when it's dead.
-        SetTankActive(false);
+        //SetTankActive(false);
+
+		m_CurrentHealth = m_StartingHealth;
+		RpcRespawn ();
     }
 
     [ClientRpc]
@@ -95,6 +105,18 @@ public class TankHealth : NetworkBehaviour
 
         InternalOnZeroHealth();
     }
+
+	[ClientRpc]
+	private void RpcRespawn()
+	{
+		if (isLocalPlayer) 
+		{
+			Transform spawnPoint = GameManager.s_Instance.GetRandomRespawnPoint ();
+			transform.position = spawnPoint.position;
+			SetDefaults ();
+			//GetComponent<TankSetup> ().Respawn ();
+		}
+	}
 
     private void SetTankActive(bool active)
     {
@@ -116,7 +138,7 @@ public class TankHealth : NetworkBehaviour
     public void SetDefaults()
     {
         m_CurrentHealth = m_StartingHealth;
-        m_ZeroHealthHappened = false;
+        //m_ZeroHealthHappened = false;
         SetTankActive(true);
     }
 }
