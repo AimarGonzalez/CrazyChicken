@@ -1,11 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class PlayerInput : NetworkBehaviour
 {
 	private GameObject m_localPlayer;
 	private bool farmer1Activated = false;
+
+	private float m_Farmer1TimeUntilActivation = 0f;
+	public float m_Farmer1CooldownTime = 5f;
+	private float m_KickTimeUntilActivation = 5f;
+	public float m_KickCooldownTime = 1.5f;
 
     public GameObject maiz;
 
@@ -24,16 +30,51 @@ public class PlayerInput : NetworkBehaviour
 
     // Update is called once per frame
     void Update () {
+
+		UpdateButtonsCooldown ();
+
 	    if(farmer1Activated)
         {
             doFarmer1();
         }
+
+	}
+
+	private void UpdateButtonsCooldown()
+	{
+		if (m_Farmer1TimeUntilActivation > 0f) {
+			
+			m_Farmer1TimeUntilActivation -= Time.deltaTime;
+
+			if (m_Farmer1TimeUntilActivation <= 0f) {
+				m_Farmer1TimeUntilActivation = 0f;
+				//transform.FindChild ("ButtonMaiz").GetComponent<CanvasRenderer> ().SetColor (Color.white);
+				transform.FindChild ("ButtonMaiz").GetComponent<Button> ().interactable = true;
+			}
+		}
+
+		if (m_KickTimeUntilActivation > 0f) {
+			
+			m_KickTimeUntilActivation -= Time.deltaTime;
+
+			if (m_KickTimeUntilActivation <= 0f) {
+				m_KickTimeUntilActivation = 0f;
+				//transform.FindChild ("ButtonKick").GetComponent<CanvasRenderer> ().SetColor (Color.white);
+				transform.FindChild ("ButtonKick").GetComponent<Button> ().interactable = true;
+			}
+		}
 	}
 
     public void Kick()
-    {
-        
-    }
+	{
+		if (m_KickTimeUntilActivation <= 0f) {
+			m_KickTimeUntilActivation = m_KickCooldownTime;
+			transform.FindChild ("ButtonKick").GetComponent<Button> ().interactable = false;
+
+			findLocalPlayer ();
+			m_localPlayer.GetComponent<TankShooting> ().Kick ();
+		}
+	}
 
     public void Dash()
     {
@@ -42,7 +83,9 @@ public class PlayerInput : NetworkBehaviour
 
     public void Farmer1()
     {
-        farmer1Activated = true;
+		if (m_Farmer1TimeUntilActivation <= 0f) {
+			farmer1Activated = !farmer1Activated;
+		}
     }
    
     public void doFarmer1()
@@ -63,16 +106,12 @@ public class PlayerInput : NetworkBehaviour
                 {
                     print("maiz!");
 
-					GameObject[] pollos = GameObject.FindGameObjectsWithTag ("Tank");
-					foreach(GameObject pollo in pollos)
-					{
-						if (pollo.GetComponent<NetworkIdentity> ().isLocalPlayer) {
-							m_localPlayer = pollo;
-						}
-					}
+					findLocalPlayer ();
 					m_localPlayer.GetComponent<TankItemSpawner>().SpawnMaiz(hit.point);
 
                     CancelFarmer1();
+					m_Farmer1TimeUntilActivation = m_Farmer1CooldownTime;
+					transform.FindChild ("ButtonMaiz").GetComponent<Button> ().interactable = false;
                 }
                 else
                 {
@@ -102,6 +141,16 @@ public class PlayerInput : NetworkBehaviour
         }
         */
     }
+
+	public void findLocalPlayer(){
+		GameObject[] pollos = GameObject.FindGameObjectsWithTag ("Tank");
+		foreach(GameObject pollo in pollos)
+		{
+			if (pollo.GetComponent<NetworkIdentity> ().isLocalPlayer) {
+				m_localPlayer = pollo;
+			}
+		}
+	}
 
     public void CancelFarmer1()
     {

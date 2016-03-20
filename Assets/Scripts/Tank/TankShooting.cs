@@ -55,15 +55,21 @@ public class TankShooting : NetworkBehaviour
         {
 			return;
         }
-        else
+        /*else
         {
 			if (Input.GetButtonDown(m_FireButton) && (Time.time >= m_timeWhenKickIsAvailable))
             {
 				CmdKick();
-				m_timeWhenKickIsAvailable = Time.time + m_kickCooldownTime;
+				//m_timeWhenKickIsAvailable = Time.time + m_kickCooldownTime;
             }
         }
+        */
     }
+
+	public void Kick()
+	{
+		CmdKick ();
+	}
 
 	[Command]
 	public void CmdKick()
