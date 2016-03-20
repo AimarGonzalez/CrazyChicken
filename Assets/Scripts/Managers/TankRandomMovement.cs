@@ -20,7 +20,7 @@ public class TankRandomMovement : NetworkBehaviour
     public float movementDestinationMax = 15f;
 
 	public float pathEndThreshold = 0.1f;
-	private bool m_hasPath = false;
+	//private bool m_hasPath = false;
 
     private void Awake()
     {
@@ -30,7 +30,7 @@ public class TankRandomMovement : NetworkBehaviour
 
     // Use this for initialization
     private void Start () {
-        m_destination = GetNewDestination();
+        m_destination = GetRandomNewDestination();
     }
 	
 	// Update is called once per frame
@@ -54,9 +54,14 @@ public class TankRandomMovement : NetworkBehaviour
         // Create a movement vector based on the input, speed and the time between frames, in the direction the tank is facing.
         //float distanceToTarget = Vector3.Distance(m_Rigidbody.position, agent.destination);
 
-		if (AtEndOfPath())
+		GameObject maiz = GetClosestMaiz();
+		if (maiz)
+		{
+			m_agent.SetDestination(maiz.transform.position);
+		}
+		else if (AtEndOfPath())
         {
-			m_agent.SetDestination(GetNewDestination());
+			m_agent.SetDestination(GetRandomNewDestination());
         }
 
         //Metodo 2:
@@ -79,28 +84,17 @@ public class TankRandomMovement : NetworkBehaviour
 		if (m_agent.remainingDistance <= m_agent.stoppingDistance + pathEndThreshold )
 		{
 			// Arrived
-			m_hasPath = false;
+			//m_hasPath = false;
 			return true;
 		}
 
 		return false;
 	}
 
-    private Vector3 GetNewDestination()
+    private Vector3 GetRandomNewDestination()
     {
-        Vector3 newDestination;
-
-        GameObject maiz = GetClosestMaiz();
-        if (maiz)
-        {
-            newDestination = maiz.transform.position;
-        }
-        else
-        {
-            //random
-            newDestination = GetRandomPosition();
-        }
-        return newDestination;
+		//random
+		return GetRandomPosition();
     }
 
     private Vector3 GetRandomPosition()
