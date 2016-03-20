@@ -2027,7 +2027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33246ba9fafdd9c46bd6de7892011c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maizPrefab: {fileID: 0}
+  m_maizPrefab: {fileID: 146416, guid: 45248c26da710d348915060e872737fc, type: 2}
 --- !u!114 &11482748
 MonoBehaviour:
   m_ObjectHideFlags: 1
