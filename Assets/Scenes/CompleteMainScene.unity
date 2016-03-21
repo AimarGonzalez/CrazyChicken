@@ -2268,13 +2268,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a000792783c934885973b761b3f96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NumKillsToWin: 5
+  m_NumKillsToWin: 2
   m_StartDelay: 3
   m_EndDelay: 3
   m_CameraControl: {fileID: 1771596988}
   m_MessageText: {fileID: 223292193}
   m_TankPrefab: {fileID: 173472, guid: 756d3a6506f2f8241b4e8badde68567a, type: 2}
   m_ButtonsCanvas: {fileID: 119235751}
+  m_CountdownCanvas: {fileID: 1142773246}
   m_SpawnPoint:
   - {fileID: 194018016}
   - {fileID: 2083660209}

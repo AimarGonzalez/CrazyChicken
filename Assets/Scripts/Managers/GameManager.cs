@@ -19,6 +19,7 @@ public class GameManager : NetworkBehaviour
     public Text m_MessageText;                // Reference to the overlay Text to display winning text, etc.
     public GameObject m_TankPrefab;           // Reference to the prefab the players will control.
 	public GameObject m_ButtonsCanvas;
+	public GameObject m_CountdownCanvas;
 
     public Transform[] m_SpawnPoint;
 
@@ -65,6 +66,7 @@ public class GameManager : NetworkBehaviour
     private void Start()
     {
 		m_ButtonsCanvas.SetActive(false);
+		m_CountdownCanvas.SetActive(false);
 
         // Create the delays so they only have to be made once.
         m_StartWait = new WaitForSeconds(m_StartDelay);
@@ -183,6 +185,7 @@ public class GameManager : NetworkBehaviour
     void RpcRoundStarting()
     {
 		m_ButtonsCanvas.SetActive(true);
+		m_CountdownCanvas.SetActive(true);
 
         // As soon as the round starts reset the tanks and make sure they can't move.
         ResetAllTanks();
@@ -276,6 +279,9 @@ public class GameManager : NetworkBehaviour
         //notify client they should disable tank control
         RpcRoundEnding();
 
+		m_ButtonsCanvas.SetActive(false);
+		m_CountdownCanvas.SetActive(false);
+
         // Wait for the specified length of time until yielding control back to the game loop.
         yield return m_EndWait;
     }
@@ -283,6 +289,8 @@ public class GameManager : NetworkBehaviour
     [ClientRpc]
     private void RpcRoundEnding()
     {
+		
+		
         DisableTankControl();
         StartCoroutine(ClientRoundEndingFade());
     }
