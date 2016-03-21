@@ -279,9 +279,6 @@ public class GameManager : NetworkBehaviour
         //notify client they should disable tank control
         RpcRoundEnding();
 
-		m_ButtonsCanvas.SetActive(false);
-		m_CountdownCanvas.SetActive(false);
-
         // Wait for the specified length of time until yielding control back to the game loop.
         yield return m_EndWait;
     }
@@ -289,7 +286,8 @@ public class GameManager : NetworkBehaviour
     [ClientRpc]
     private void RpcRoundEnding()
     {
-		
+		m_ButtonsCanvas.SetActive(false);
+		m_CountdownCanvas.SetActive(false);
 		
         DisableTankControl();
         StartCoroutine(ClientRoundEndingFade());
