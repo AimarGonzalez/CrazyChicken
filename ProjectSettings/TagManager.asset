@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tank
   - Maiz
+  - CabrasSpawn
   layers:
   - Default
   - TransparentFX

@@ -335,6 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Farmer1CooldownTime: 5
+  m_KickCooldownTime: 1.5
   maiz: {fileID: 146416, guid: 45248c26da710d348915060e872737fc, type: 2}
 --- !u!114 &119235757
 MonoBehaviour:
@@ -1376,7 +1377,7 @@ GameObject:
   - 114: {fileID: 619596886}
   m_Layer: 0
   m_Name: SpawnEstampidaPoint3
-  m_TagString: Untagged
+  m_TagString: CabrasSpawn
   m_Icon: {fileID: 8467475693731670952, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1540,7 +1541,7 @@ GameObject:
   - 114: {fileID: 658992494}
   m_Layer: 0
   m_Name: SpawnEstampidaPoint2
-  m_TagString: Untagged
+  m_TagString: CabrasSpawn
   m_Icon: {fileID: 8467475693731670952, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1653,7 +1654,7 @@ GameObject:
   - 114: {fileID: 894693900}
   m_Layer: 0
   m_Name: SpawnEstampidaPoint1
-  m_TagString: Untagged
+  m_TagString: CabrasSpawn
   m_Icon: {fileID: 8467475693731670952, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2147,7 +2148,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
 --- !u!1 &1304999364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2159,6 +2160,7 @@ GameObject:
   - 114: {fileID: 1304999365}
   - 82: {fileID: 1304999367}
   - 114: {fileID: 1304999368}
+  - 114: {fileID: 1304999369}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2311,6 +2313,18 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &1304999369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1304999364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d85117c24e717e46823bddbf678f4fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_timeBetweenEvents: 10
 --- !u!1 &1306431245
 GameObject:
   m_ObjectHideFlags: 0
@@ -3658,7 +3672,7 @@ GameObject:
   - 114: {fileID: 1935155048}
   m_Layer: 0
   m_Name: SpawnEstampidaPoint4
-  m_TagString: Untagged
+  m_TagString: CabrasSpawn
   m_Icon: {fileID: 8467475693731670952, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
