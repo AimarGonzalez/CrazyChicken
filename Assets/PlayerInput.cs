@@ -49,7 +49,6 @@ public class PlayerInput : NetworkBehaviour
 
 			if (m_Farmer1TimeUntilActivation <= 0f) {
 				m_Farmer1TimeUntilActivation = 0f;
-				//transform.FindChild ("ButtonMaiz").GetComponent<CanvasRenderer> ().SetColor (Color.white);
 				transform.FindChild ("ButtonMaiz").GetComponent<Button> ().interactable = true;
 			}
 		}
@@ -60,7 +59,6 @@ public class PlayerInput : NetworkBehaviour
 
 			if (m_KickTimeUntilActivation <= 0f) {
 				m_KickTimeUntilActivation = 0f;
-				//transform.FindChild ("ButtonKick").GetComponent<CanvasRenderer> ().SetColor (Color.white);
 				transform.FindChild ("ButtonKick").GetComponent<Button> ().interactable = true;
 			}
 		}
@@ -100,48 +98,26 @@ public class PlayerInput : NetworkBehaviour
            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
            RaycastHit hit;
 
-           if (Physics.Raycast(ray, out hit, 100))
-           {
-                //Debug.DrawLine(ray.origin, hit.point);
-                if (hit.collider.name == "Terrain")
-                {
-                    print("maiz!");
+			if (Physics.Raycast(ray, out hit, 100, ~LayerMask.NameToLayer("Ground")))
+			{
+				//Debug.DrawLine(ray.origin, hit.point);
+				//if (hit.collider.name == "Terrain")
+				//{
+				print("maiz!");
 
-					findLocalPlayer ();
-					m_localPlayer.GetComponent<TankItemSpawner>().SpawnMaiz(hit.point, m_maizLifeTime);
+				findLocalPlayer ();
+				m_localPlayer.GetComponent<TankItemSpawner>().SpawnMaiz(hit.point, m_maizLifeTime);
 
-                    CancelFarmer1();
-					m_Farmer1TimeUntilActivation = m_Farmer1CooldownTime;
-					transform.FindChild ("ButtonMaiz").GetComponent<Button> ().interactable = false;
-                }
-                else
-                {
-                    print("arbol!");
-                }
-            }
-        }
-
-        /*
-        if (Input.touchCount > 0 && Input.touchCount < 2)
-        {
-            // foreach (Touch t in Input.touches)
-            Touch t = Input.touches[0];
-            touches[t.fingerId] = Camera.main.ScreenToWorldPoint(Input.GetTouch(t.fingerId).position);
-            if (Input.GetTouch(t.fingerId).phase == TouchPhase.Began)
-            {
-                hit = Physics2D.Raycast(touches[t.fingerId], Vector2.zero);
-            }
-            if (hit.collider.name == "Terrain")
-            {
-                hit.transform.position = touches[t.fingerId];
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                Debug.DrawLine(ray.origin, hit.point);
-            }
-
-            CancelFarmer1();
-        }
-        */
-    }
+				CancelFarmer1();
+				m_Farmer1TimeUntilActivation = m_Farmer1CooldownTime;
+				transform.FindChild ("ButtonMaiz").GetComponent<Button> ().interactable = false;
+			}
+			else
+			{
+				print("arbol!");
+			}
+		}
+	}
 
 	public void findLocalPlayer(){
 		GameObject[] pollos = GameObject.FindGameObjectsWithTag ("Tank");

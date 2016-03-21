@@ -9,11 +9,17 @@ public class Events : NetworkBehaviour {
 	public float m_cabrasLifeTime = 10f;
 	public float m_meteorLifeTime = 8f;
 	public Text m_eventTitleText;
+	public Text m_eventTimeText;
 	public string[] m_eventsNames;
 
 	private float m_nextEventTime = 0f;
+	private float m_nextSyncTime = 0f;
+	private float m_syncInterval = 0.1f;
 	private GameObject m_localPlayer;
+	[SyncVar]
+	private float m_countdownTime = 0f;
 
+	[SyncVar]
 	private EInGameEventType m_nextEventType;
 
 	enum EInGameEventType
@@ -26,14 +32,20 @@ public class Events : NetworkBehaviour {
     // Update is called once per frame
 	public void Awake()
     {
-		SetUpNextRandomEvent ();
+		if(isServer)
+			SetUpNextRandomEvent ();
     }
 
     void Update()
     {
+		m_eventTimeText.text = m_countdownTime.ToString();
+		m_eventTitleText.text = "Next:\n" + m_eventsNames [(int)m_nextEventType];
+
 		if (!isServer)
 			return;
-		
+
+		m_countdownTime = (int)(m_nextEventTime - Time.time);
+
 		if (Time.time >= m_nextEventTime)
         {
 			findLocalPlayer ();
@@ -60,7 +72,6 @@ public class Events : NetworkBehaviour {
 	{
 		m_nextEventTime = Time.time + m_timeBetweenEvents;
 		m_nextEventType = (EInGameEventType)Random.Range (0, (int)(EInGameEventType.LAST_EVENT)+1);
-		m_eventTitleText.text = m_eventsNames [(int)m_nextEventType];
 	}
 
 	public void findLocalPlayer(){

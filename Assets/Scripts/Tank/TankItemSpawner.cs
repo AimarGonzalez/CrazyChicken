@@ -49,7 +49,7 @@ public class TankItemSpawner : NetworkBehaviour {
 
 	public void SpawnMeteoro(float lifeTime)
 	{
-		GameObject[] meteoroSpawnPoints = GameObject.FindGameObjectsWithTag("CabrasSpawn");
+		GameObject[] meteoroSpawnPoints = GameObject.FindGameObjectsWithTag("MeteorSpawn");
 		int randomIndex = Random.Range (0, meteoroSpawnPoints.Length - 1);
 		GameObject newMeteor = (GameObject)Instantiate(m_meteorPrefab, meteoroSpawnPoints[randomIndex].transform.position, meteoroSpawnPoints[randomIndex].transform.rotation);
 		NetworkServer.Spawn(newMeteor);

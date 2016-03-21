@@ -484,7 +484,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 119235751}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 006c49639c6637a4188eafe972d269c9, type: 3}
   m_Name: 
@@ -1552,7 +1552,7 @@ RectTransform:
   - {fileID: 2043816360}
   - {fileID: 223292191}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 9
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2124,7 +2124,7 @@ GameObject:
   - 4: {fileID: 790546901}
   - 218: {fileID: 790546903}
   - 154: {fileID: 790546902}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2868,7 +2868,7 @@ Transform:
   - {fileID: 923548190}
   - {fileID: 2074387660}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 12
 --- !u!1001 &1105761072
 Prefab:
   m_ObjectHideFlags: 0
@@ -3232,7 +3232,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 7
 --- !u!1 &1304999364
 GameObject:
   m_ObjectHideFlags: 0
@@ -3290,7 +3290,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 8
 --- !u!82 &1304999367
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3413,6 +3413,7 @@ MonoBehaviour:
   m_cabrasLifeTime: 4
   m_meteorLifeTime: 8
   m_eventTitleText: {fileID: 1598440000}
+  m_eventTimeText: {fileID: 1142773248}
   m_eventsNames:
   - Stampede
   - Meteor
@@ -5007,7 +5008,7 @@ Transform:
   - {fileID: 660806408}
   - {fileID: 891090495}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 6
 --- !u!1 &1800064686
 GameObject:
   m_ObjectHideFlags: 0
