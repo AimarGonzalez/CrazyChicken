@@ -415,6 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a8b412370c479428c62b2a0082abf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_maizLifeTime: 3
   m_Farmer1CooldownTime: 5
   m_KickCooldownTime: 1.5
   maiz: {fileID: 146416, guid: 45248c26da710d348915060e872737fc, type: 2}
@@ -3055,7 +3056,7 @@ MonoBehaviour:
   m_MessageText: {fileID: 223292193}
   m_TankPrefab: {fileID: 173472, guid: 756d3a6506f2f8241b4e8badde68567a, type: 2}
   m_ButtonsCanvas: {fileID: 119235751}
-  m_CountdownCanvas: {fileID: 0}
+  m_CountdownCanvas: {fileID: 1142773246}
   m_SpawnPoint:
   - {fileID: 194018016}
   - {fileID: 2083660209}
@@ -3195,6 +3196,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_timeBetweenEvents: 10
+  m_cabrasLifeTime: 4
+  m_meteorLifeTime: 8
+  m_eventTitleText: {fileID: 1598440000}
+  m_eventsNames:
+  - Stampede
+  - Meteor
 --- !u!1 &1306431245
 GameObject:
   m_ObjectHideFlags: 0

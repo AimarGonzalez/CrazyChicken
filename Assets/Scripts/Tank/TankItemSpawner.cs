@@ -5,10 +5,9 @@ using UnityEngine.Networking;
 public class TankItemSpawner : NetworkBehaviour {
 
 	public GameObject m_maizPrefab;
-	public float m_maizEffectTime = 3f;
 
 	public GameObject m_cabrasPrefab;
-	public float m_timeToDestroyCabras = 10f;
+	public GameObject m_meteorPrefab;
 
 	// Use this for initialization
 	void Start () {
@@ -20,17 +19,17 @@ public class TankItemSpawner : NetworkBehaviour {
 	
 	}
 
-	public void SpawnMaiz(Vector3 position)
+	public void SpawnMaiz(Vector3 position, float lifeTime)
 	{
-		CmdSpawnMaiz (position);
+		CmdSpawnMaiz (position, lifeTime);
 	}
 
 	[Command]
-	public void CmdSpawnMaiz(Vector3 hitPos)
+	public void CmdSpawnMaiz(Vector3 hitPos, float lifeTime)
 	{
 		GameObject nuevoMaiz = (GameObject)Instantiate(m_maizPrefab, hitPos, Quaternion.identity);
 		NetworkServer.Spawn(nuevoMaiz);
-		Destroy (nuevoMaiz, m_maizEffectTime);
+		Destroy (nuevoMaiz, lifeTime);
 	}
 
 	//public void SpawnCabras()
@@ -39,12 +38,21 @@ public class TankItemSpawner : NetworkBehaviour {
 	//}
 
 	//[Command]
-	public void SpawnCabras()
+	public void SpawnCabras(float lifeTime)
 	{
 		GameObject[] cabrasSpawnPoints = GameObject.FindGameObjectsWithTag("CabrasSpawn");
 		int randomIndex = Random.Range (0, cabrasSpawnPoints.Length - 1);
 		GameObject nuevasCabras = (GameObject)Instantiate(m_cabrasPrefab, cabrasSpawnPoints[randomIndex].transform.position, cabrasSpawnPoints[randomIndex].transform.rotation);
 		NetworkServer.Spawn(nuevasCabras);
-		Destroy (nuevasCabras, m_timeToDestroyCabras);
+		Destroy (nuevasCabras, lifeTime);
+	}
+
+	public void SpawnMeteoro(float lifeTime)
+	{
+		GameObject[] meteoroSpawnPoints = GameObject.FindGameObjectsWithTag("CabrasSpawn");
+		int randomIndex = Random.Range (0, meteoroSpawnPoints.Length - 1);
+		GameObject newMeteor = (GameObject)Instantiate(m_meteorPrefab, meteoroSpawnPoints[randomIndex].transform.position, meteoroSpawnPoints[randomIndex].transform.rotation);
+		NetworkServer.Spawn(newMeteor);
+		Destroy (newMeteor, lifeTime);
 	}
 }

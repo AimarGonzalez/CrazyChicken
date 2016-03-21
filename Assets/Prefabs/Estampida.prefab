@@ -6173,6 +6173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_amountOfDamage: 20
   m_timeBetweenDamage: 0.2
+  m_damageColliderObject: {fileID: 195084}
 --- !u!114 &11443166
 MonoBehaviour:
   m_ObjectHideFlags: 1

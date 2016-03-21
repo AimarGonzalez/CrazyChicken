@@ -2015,9 +2015,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maizPrefab: {fileID: 146416, guid: 45248c26da710d348915060e872737fc, type: 2}
-  m_maizEffectTime: 3
   m_cabrasPrefab: {fileID: 132228, guid: 71f65ad5fd8e4e848b34c36bc09a35e5, type: 2}
-  m_timeToDestroyCabras: 4
+  m_meteorPrefab: {fileID: 137564, guid: 0525ad6cdb0a14eb090ed886c6227b4c, type: 2}
 --- !u!114 &11482748
 MonoBehaviour:
   m_ObjectHideFlags: 1

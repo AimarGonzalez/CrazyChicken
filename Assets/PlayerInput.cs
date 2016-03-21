@@ -8,6 +8,7 @@ public class PlayerInput : NetworkBehaviour
 	private GameObject m_localPlayer;
 	private bool farmer1Activated = false;
 
+	public float m_maizLifeTime = 3f;
 	private float m_Farmer1TimeUntilActivation = 0f;
 	public float m_Farmer1CooldownTime = 5f;
 	private float m_KickTimeUntilActivation = 5f;
@@ -107,7 +108,7 @@ public class PlayerInput : NetworkBehaviour
                     print("maiz!");
 
 					findLocalPlayer ();
-					m_localPlayer.GetComponent<TankItemSpawner>().SpawnMaiz(hit.point);
+					m_localPlayer.GetComponent<TankItemSpawner>().SpawnMaiz(hit.point, m_maizLifeTime);
 
                     CancelFarmer1();
 					m_Farmer1TimeUntilActivation = m_Farmer1CooldownTime;

@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EstampidaDamageScript : MonoBehaviour {
+public class AreaDamageScript : MonoBehaviour {
 
 	public float m_amountOfDamage = 10f;
 	public float m_timeBetweenDamage = 0.75f;
 
 	private float m_nextTimeToApplyDamage = Time.time;
-	private BoxCollider m_boxCollider; 
+	public GameObject m_damageColliderObject; 
 
 	// Use this for initialization
 	void Start () {
-		m_boxCollider = transform.Find ("Guide/Cube").GetComponent<BoxCollider> ();
 	}
 	
 	// Update is called once per frame
@@ -30,7 +29,7 @@ public class EstampidaDamageScript : MonoBehaviour {
 
 		foreach (GameObject pollo in pollos) {
 
-			if (m_boxCollider.bounds.Contains (pollo.transform.position)) {
+			if (m_damageColliderObject.GetComponent<Collider>().bounds.Contains (pollo.transform.position)) {
 				bool killedPollo = pollo.GetComponent<TankHealth> ().Damage (m_amountOfDamage);
 				GameObject plumasInstance = Instantiate (pollo.GetComponent<TankShooting> ().m_plumasParticles, pollo.transform.position + new Vector3 (0, 2, 0), pollo.transform.rotation) as GameObject;
 				Destroy (plumasInstance, 1.0f);
