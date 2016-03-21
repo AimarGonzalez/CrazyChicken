@@ -31,10 +31,21 @@ public class EstampidaDamageScript : MonoBehaviour {
 		foreach (GameObject pollo in pollos) {
 
 			if (m_boxCollider.bounds.Contains (pollo.transform.position)) {
-				pollo.GetComponent<TankHealth> ().Damage (m_amountOfDamage);
-
+				bool killedPollo = pollo.GetComponent<TankHealth> ().Damage (m_amountOfDamage);
 				GameObject plumasInstance = Instantiate (pollo.GetComponent<TankShooting> ().m_plumasParticles, pollo.transform.position + new Vector3 (0, 2, 0), pollo.transform.rotation) as GameObject;
 				Destroy (plumasInstance, 1.0f);
+
+				if (killedPollo) 
+				{
+					int killedPlayerId = pollo.GetComponent<TankHealth> ().m_Manager.m_PlayerNumber;
+					GameObject[] allPollos = GameObject.FindGameObjectsWithTag ("Tank");
+					foreach(GameObject polloToAddKill in allPollos)
+					{
+						if (polloToAddKill.GetComponent<TankHealth> ().m_Manager.m_PlayerNumber != killedPlayerId) {
+							polloToAddKill.GetComponent<TankHealth> ().m_Manager.m_Kills++;
+						}
+					}
+				}
 			}
 
 

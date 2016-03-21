@@ -1693,7 +1693,7 @@ MonoBehaviour:
   m_Speed: 2
   m_MaizEffectDistance: 20
   m_destination: {x: 0, y: 0, z: 0}
-  movementDestinationMin: -15
+  movementDestinationMin: -11
   movementDestinationMax: 15
   pathEndThreshold: 1
 --- !u!114 &11409376
