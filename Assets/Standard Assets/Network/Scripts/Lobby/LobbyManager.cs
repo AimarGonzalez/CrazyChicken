@@ -340,7 +340,7 @@ namespace UnityStandardAssets.Network
 
         public IEnumerator ServerCountdownCoroutine()
         {
-            float remainingTime = _matchStartCountdown;
+            /*float remainingTime = _matchStartCountdown;
             int floorTime = Mathf.FloorToInt(remainingTime);
 
             while(remainingTime > 0)
@@ -370,9 +370,11 @@ namespace UnityStandardAssets.Network
                 {
                     (lobbySlots[i] as LobbyPlayer).RpcUpdateCountdown(0);
                 }
-            }
+            }*/
 
             ServerChangeScene(playScene);
+
+			yield return null;
         }
 
 
