@@ -327,7 +327,15 @@ namespace UnityStandardAssets.Network
 
         public override void OnLobbyServerPlayersReady()
         {
-            StartCoroutine(ServerCountdownCoroutine());
+			bool allReady = true;
+			foreach (NetworkLobbyPlayer p in lobbySlots)
+			{
+				if (p != null && !p.readyToBegin)
+					allReady = false;
+			}
+			if (allReady) {
+				StartCoroutine (ServerCountdownCoroutine ());
+			}
         }
 
         public IEnumerator ServerCountdownCoroutine()
