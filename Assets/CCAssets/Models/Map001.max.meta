@@ -131,6 +131,15 @@ ModelImporter:
     100246: Tabla Padre002
     100248: Tabla Padre003
     100250: Paja001
+    100252: Cuerda001
+    100254: Cuerda002
+    100256: Paja002
+    100258: Pajar001
+    100260: Pajar002
+    100262: Pajar003
+    100264: Tejado001
+    100266: Tejado002
+    100268: Tejado003
     400000: Box013
     400002: //RootNode
     400004: Plane001
@@ -257,6 +266,15 @@ ModelImporter:
     400246: Tabla Padre002
     400248: Tabla Padre003
     400250: Paja001
+    400252: Cuerda001
+    400254: Cuerda002
+    400256: Paja002
+    400258: Pajar001
+    400260: Pajar002
+    400262: Pajar003
+    400264: Tejado001
+    400266: Tejado002
+    400268: Tejado003
     2300000: Box013
     2300002: Plane001
     2300004: Tejado
@@ -382,6 +400,15 @@ ModelImporter:
     2300244: Tabla Padre002
     2300246: Tabla Padre003
     2300248: Paja001
+    2300250: Cuerda001
+    2300252: Cuerda002
+    2300254: Paja002
+    2300256: Pajar001
+    2300258: Pajar002
+    2300260: Pajar003
+    2300262: Tejado001
+    2300264: Tejado002
+    2300266: Tejado003
     3300000: Box013
     3300002: Plane001
     3300004: Tejado
@@ -507,6 +534,15 @@ ModelImporter:
     3300244: Tabla Padre002
     3300246: Tabla Padre003
     3300248: Paja001
+    3300250: Cuerda001
+    3300252: Cuerda002
+    3300254: Paja002
+    3300256: Pajar001
+    3300258: Pajar002
+    3300260: Pajar003
+    3300262: Tejado001
+    3300264: Tejado002
+    3300266: Tejado003
     4300000: Box013
     4300002: Tejado
     4300004: Plane001
@@ -632,6 +668,15 @@ ModelImporter:
     4300244: Tabla hijo055
     4300246: Tabla Padre003
     4300248: Paja001
+    4300250: Cuerda001
+    4300252: Paja002
+    4300254: Cuerda002
+    4300256: Pajar001
+    4300258: Tejado001
+    4300260: Pajar002
+    4300262: Tejado002
+    4300264: Pajar003
+    4300266: Tejado003
     9500000: //RootNode
   materials:
     importMaterials: 1
