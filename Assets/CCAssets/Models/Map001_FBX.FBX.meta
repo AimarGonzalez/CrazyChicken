@@ -1,0 +1,729 @@
+fileFormatVersion: 2
+guid: 0ae153a131774dd489fa352e8bbfb9a7
+timeCreated: 1459791425
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Cuerda
+    100002: Cuerda001
+    100004: Cuerda002
+    100006: //RootNode
+    100008: Paja
+    100010: Paja001
+    100012: Paja002
+    100014: Pajar
+    100016: Pajar001
+    100018: Pajar002
+    100020: Pajar003
+    100022: Plane001
+    100024: Poste Padre
+    100026: Poste Padre001
+    100028: Poste Padre002
+    100030: Poste Padre003
+    100032: Poste Padre004
+    100034: Poste Padre005
+    100036: Poste Padre006
+    100038: Poste Padre007
+    100040: Poste Padre008
+    100042: Poste Padre009
+    100044: Poste Padre010
+    100046: Poste Padre011
+    100048: Poste Padre012
+    100050: Poste Padre013
+    100052: Poste Padre014
+    100054: Poste Padre015
+    100056: Poste Padre016
+    100058: Poste Padre017
+    100060: Poste Padre018
+    100062: Poste Padre019
+    100064: Poste Padre020
+    100066: Poste Padre021
+    100068: Poste Padre022
+    100070: Poste Padre023
+    100072: Poste Padre024
+    100074: Poste Padre025
+    100076: Poste Padre026
+    100078: Poste Padre027
+    100080: Poste Padre028
+    100082: Poste Padre029
+    100084: Poste Padre030
+    100086: Poste Padre031
+    100088: Poste Padre032
+    100090: Poste Padre033
+    100092: Poste Padre034
+    100094: Poste Padre035
+    100096: Poste Padre036
+    100098: Poste Padre037
+    100100: Poste Padre038
+    100102: Poste Padre039
+    100104: Poste Padre040
+    100106: Poste Padre041
+    100108: Poste Padre042
+    100110: Poste Padre043
+    100112: Poste Padre044
+    100114: Poste Padre045
+    100116: Poste Padre046
+    100118: Poste Padre047
+    100120: Poste Padre048
+    100122: Poste Padre049
+    100124: Poste Padre050
+    100126: Poste Padre051
+    100128: Poste Padre052
+    100130: Poste Padre053
+    100132: Poste Padre054
+    100134: Poste Padre055
+    100136: Tabla hijo
+    100138: Tabla hijo001
+    100140: Tabla hijo002
+    100142: Tabla hijo003
+    100144: Tabla hijo004
+    100146: Tabla hijo005
+    100148: Tabla hijo006
+    100150: Tabla hijo007
+    100152: Tabla hijo008
+    100154: Tabla hijo009
+    100156: Tabla hijo010
+    100158: Tabla hijo011
+    100160: Tabla hijo012
+    100162: Tabla hijo013
+    100164: Tabla hijo014
+    100166: Tabla hijo015
+    100168: Tabla hijo016
+    100170: Tabla hijo017
+    100172: Tabla hijo018
+    100174: Tabla hijo019
+    100176: Tabla hijo020
+    100178: Tabla hijo021
+    100180: Tabla hijo022
+    100182: Tabla hijo023
+    100184: Tabla hijo024
+    100186: Tabla hijo025
+    100188: Tabla hijo026
+    100190: Tabla hijo027
+    100192: Tabla hijo028
+    100194: Tabla hijo029
+    100196: Tabla hijo030
+    100198: Tabla hijo031
+    100200: Tabla hijo032
+    100202: Tabla hijo033
+    100204: Tabla hijo034
+    100206: Tabla hijo035
+    100208: Tabla hijo036
+    100210: Tabla hijo037
+    100212: Tabla hijo038
+    100214: Tabla hijo039
+    100216: Tabla hijo040
+    100218: Tabla hijo041
+    100220: Tabla hijo042
+    100222: Tabla hijo043
+    100224: Tabla hijo044
+    100226: Tabla hijo045
+    100228: Tabla hijo046
+    100230: Tabla hijo047
+    100232: Tabla hijo048
+    100234: Tabla hijo049
+    100236: Tabla hijo050
+    100238: Tabla hijo051
+    100240: Tabla hijo052
+    100242: Tabla hijo053
+    100244: Tabla hijo054
+    100246: Tabla hijo055
+    100248: Tabla Padre
+    100250: Tabla Padre001
+    100252: Tabla Padre002
+    100254: Tabla Padre003
+    100256: Tejado
+    100258: Tejado001
+    100260: Tejado002
+    100262: Tejado003
+    400000: Cuerda
+    400002: Cuerda001
+    400004: Cuerda002
+    400006: //RootNode
+    400008: Paja
+    400010: Paja001
+    400012: Paja002
+    400014: Pajar
+    400016: Pajar001
+    400018: Pajar002
+    400020: Pajar003
+    400022: Plane001
+    400024: Poste Padre
+    400026: Poste Padre001
+    400028: Poste Padre002
+    400030: Poste Padre003
+    400032: Poste Padre004
+    400034: Poste Padre005
+    400036: Poste Padre006
+    400038: Poste Padre007
+    400040: Poste Padre008
+    400042: Poste Padre009
+    400044: Poste Padre010
+    400046: Poste Padre011
+    400048: Poste Padre012
+    400050: Poste Padre013
+    400052: Poste Padre014
+    400054: Poste Padre015
+    400056: Poste Padre016
+    400058: Poste Padre017
+    400060: Poste Padre018
+    400062: Poste Padre019
+    400064: Poste Padre020
+    400066: Poste Padre021
+    400068: Poste Padre022
+    400070: Poste Padre023
+    400072: Poste Padre024
+    400074: Poste Padre025
+    400076: Poste Padre026
+    400078: Poste Padre027
+    400080: Poste Padre028
+    400082: Poste Padre029
+    400084: Poste Padre030
+    400086: Poste Padre031
+    400088: Poste Padre032
+    400090: Poste Padre033
+    400092: Poste Padre034
+    400094: Poste Padre035
+    400096: Poste Padre036
+    400098: Poste Padre037
+    400100: Poste Padre038
+    400102: Poste Padre039
+    400104: Poste Padre040
+    400106: Poste Padre041
+    400108: Poste Padre042
+    400110: Poste Padre043
+    400112: Poste Padre044
+    400114: Poste Padre045
+    400116: Poste Padre046
+    400118: Poste Padre047
+    400120: Poste Padre048
+    400122: Poste Padre049
+    400124: Poste Padre050
+    400126: Poste Padre051
+    400128: Poste Padre052
+    400130: Poste Padre053
+    400132: Poste Padre054
+    400134: Poste Padre055
+    400136: Tabla hijo
+    400138: Tabla hijo001
+    400140: Tabla hijo002
+    400142: Tabla hijo003
+    400144: Tabla hijo004
+    400146: Tabla hijo005
+    400148: Tabla hijo006
+    400150: Tabla hijo007
+    400152: Tabla hijo008
+    400154: Tabla hijo009
+    400156: Tabla hijo010
+    400158: Tabla hijo011
+    400160: Tabla hijo012
+    400162: Tabla hijo013
+    400164: Tabla hijo014
+    400166: Tabla hijo015
+    400168: Tabla hijo016
+    400170: Tabla hijo017
+    400172: Tabla hijo018
+    400174: Tabla hijo019
+    400176: Tabla hijo020
+    400178: Tabla hijo021
+    400180: Tabla hijo022
+    400182: Tabla hijo023
+    400184: Tabla hijo024
+    400186: Tabla hijo025
+    400188: Tabla hijo026
+    400190: Tabla hijo027
+    400192: Tabla hijo028
+    400194: Tabla hijo029
+    400196: Tabla hijo030
+    400198: Tabla hijo031
+    400200: Tabla hijo032
+    400202: Tabla hijo033
+    400204: Tabla hijo034
+    400206: Tabla hijo035
+    400208: Tabla hijo036
+    400210: Tabla hijo037
+    400212: Tabla hijo038
+    400214: Tabla hijo039
+    400216: Tabla hijo040
+    400218: Tabla hijo041
+    400220: Tabla hijo042
+    400222: Tabla hijo043
+    400224: Tabla hijo044
+    400226: Tabla hijo045
+    400228: Tabla hijo046
+    400230: Tabla hijo047
+    400232: Tabla hijo048
+    400234: Tabla hijo049
+    400236: Tabla hijo050
+    400238: Tabla hijo051
+    400240: Tabla hijo052
+    400242: Tabla hijo053
+    400244: Tabla hijo054
+    400246: Tabla hijo055
+    400248: Tabla Padre
+    400250: Tabla Padre001
+    400252: Tabla Padre002
+    400254: Tabla Padre003
+    400256: Tejado
+    400258: Tejado001
+    400260: Tejado002
+    400262: Tejado003
+    2300000: Cuerda
+    2300002: Cuerda001
+    2300004: Cuerda002
+    2300006: Paja
+    2300008: Paja001
+    2300010: Paja002
+    2300012: Pajar
+    2300014: Pajar001
+    2300016: Pajar002
+    2300018: Pajar003
+    2300020: Plane001
+    2300022: Poste Padre
+    2300024: Poste Padre001
+    2300026: Poste Padre002
+    2300028: Poste Padre003
+    2300030: Poste Padre004
+    2300032: Poste Padre005
+    2300034: Poste Padre006
+    2300036: Poste Padre007
+    2300038: Poste Padre008
+    2300040: Poste Padre009
+    2300042: Poste Padre010
+    2300044: Poste Padre011
+    2300046: Poste Padre012
+    2300048: Poste Padre013
+    2300050: Poste Padre014
+    2300052: Poste Padre015
+    2300054: Poste Padre016
+    2300056: Poste Padre017
+    2300058: Poste Padre018
+    2300060: Poste Padre019
+    2300062: Poste Padre020
+    2300064: Poste Padre021
+    2300066: Poste Padre022
+    2300068: Poste Padre023
+    2300070: Poste Padre024
+    2300072: Poste Padre025
+    2300074: Poste Padre026
+    2300076: Poste Padre027
+    2300078: Poste Padre028
+    2300080: Poste Padre029
+    2300082: Poste Padre030
+    2300084: Poste Padre031
+    2300086: Poste Padre032
+    2300088: Poste Padre033
+    2300090: Poste Padre034
+    2300092: Poste Padre035
+    2300094: Poste Padre036
+    2300096: Poste Padre037
+    2300098: Poste Padre038
+    2300100: Poste Padre039
+    2300102: Poste Padre040
+    2300104: Poste Padre041
+    2300106: Poste Padre042
+    2300108: Poste Padre043
+    2300110: Poste Padre044
+    2300112: Poste Padre045
+    2300114: Poste Padre046
+    2300116: Poste Padre047
+    2300118: Poste Padre048
+    2300120: Poste Padre049
+    2300122: Poste Padre050
+    2300124: Poste Padre051
+    2300126: Poste Padre052
+    2300128: Poste Padre053
+    2300130: Poste Padre054
+    2300132: Poste Padre055
+    2300134: Tabla hijo
+    2300136: Tabla hijo001
+    2300138: Tabla hijo002
+    2300140: Tabla hijo003
+    2300142: Tabla hijo004
+    2300144: Tabla hijo005
+    2300146: Tabla hijo006
+    2300148: Tabla hijo007
+    2300150: Tabla hijo008
+    2300152: Tabla hijo009
+    2300154: Tabla hijo010
+    2300156: Tabla hijo011
+    2300158: Tabla hijo012
+    2300160: Tabla hijo013
+    2300162: Tabla hijo014
+    2300164: Tabla hijo015
+    2300166: Tabla hijo016
+    2300168: Tabla hijo017
+    2300170: Tabla hijo018
+    2300172: Tabla hijo019
+    2300174: Tabla hijo020
+    2300176: Tabla hijo021
+    2300178: Tabla hijo022
+    2300180: Tabla hijo023
+    2300182: Tabla hijo024
+    2300184: Tabla hijo025
+    2300186: Tabla hijo026
+    2300188: Tabla hijo027
+    2300190: Tabla hijo028
+    2300192: Tabla hijo029
+    2300194: Tabla hijo030
+    2300196: Tabla hijo031
+    2300198: Tabla hijo032
+    2300200: Tabla hijo033
+    2300202: Tabla hijo034
+    2300204: Tabla hijo035
+    2300206: Tabla hijo036
+    2300208: Tabla hijo037
+    2300210: Tabla hijo038
+    2300212: Tabla hijo039
+    2300214: Tabla hijo040
+    2300216: Tabla hijo041
+    2300218: Tabla hijo042
+    2300220: Tabla hijo043
+    2300222: Tabla hijo044
+    2300224: Tabla hijo045
+    2300226: Tabla hijo046
+    2300228: Tabla hijo047
+    2300230: Tabla hijo048
+    2300232: Tabla hijo049
+    2300234: Tabla hijo050
+    2300236: Tabla hijo051
+    2300238: Tabla hijo052
+    2300240: Tabla hijo053
+    2300242: Tabla hijo054
+    2300244: Tabla hijo055
+    2300246: Tabla Padre
+    2300248: Tabla Padre001
+    2300250: Tabla Padre002
+    2300252: Tabla Padre003
+    2300254: Tejado
+    2300256: Tejado001
+    2300258: Tejado002
+    2300260: Tejado003
+    3300000: Cuerda
+    3300002: Cuerda001
+    3300004: Cuerda002
+    3300006: Paja
+    3300008: Paja001
+    3300010: Paja002
+    3300012: Pajar
+    3300014: Pajar001
+    3300016: Pajar002
+    3300018: Pajar003
+    3300020: Plane001
+    3300022: Poste Padre
+    3300024: Poste Padre001
+    3300026: Poste Padre002
+    3300028: Poste Padre003
+    3300030: Poste Padre004
+    3300032: Poste Padre005
+    3300034: Poste Padre006
+    3300036: Poste Padre007
+    3300038: Poste Padre008
+    3300040: Poste Padre009
+    3300042: Poste Padre010
+    3300044: Poste Padre011
+    3300046: Poste Padre012
+    3300048: Poste Padre013
+    3300050: Poste Padre014
+    3300052: Poste Padre015
+    3300054: Poste Padre016
+    3300056: Poste Padre017
+    3300058: Poste Padre018
+    3300060: Poste Padre019
+    3300062: Poste Padre020
+    3300064: Poste Padre021
+    3300066: Poste Padre022
+    3300068: Poste Padre023
+    3300070: Poste Padre024
+    3300072: Poste Padre025
+    3300074: Poste Padre026
+    3300076: Poste Padre027
+    3300078: Poste Padre028
+    3300080: Poste Padre029
+    3300082: Poste Padre030
+    3300084: Poste Padre031
+    3300086: Poste Padre032
+    3300088: Poste Padre033
+    3300090: Poste Padre034
+    3300092: Poste Padre035
+    3300094: Poste Padre036
+    3300096: Poste Padre037
+    3300098: Poste Padre038
+    3300100: Poste Padre039
+    3300102: Poste Padre040
+    3300104: Poste Padre041
+    3300106: Poste Padre042
+    3300108: Poste Padre043
+    3300110: Poste Padre044
+    3300112: Poste Padre045
+    3300114: Poste Padre046
+    3300116: Poste Padre047
+    3300118: Poste Padre048
+    3300120: Poste Padre049
+    3300122: Poste Padre050
+    3300124: Poste Padre051
+    3300126: Poste Padre052
+    3300128: Poste Padre053
+    3300130: Poste Padre054
+    3300132: Poste Padre055
+    3300134: Tabla hijo
+    3300136: Tabla hijo001
+    3300138: Tabla hijo002
+    3300140: Tabla hijo003
+    3300142: Tabla hijo004
+    3300144: Tabla hijo005
+    3300146: Tabla hijo006
+    3300148: Tabla hijo007
+    3300150: Tabla hijo008
+    3300152: Tabla hijo009
+    3300154: Tabla hijo010
+    3300156: Tabla hijo011
+    3300158: Tabla hijo012
+    3300160: Tabla hijo013
+    3300162: Tabla hijo014
+    3300164: Tabla hijo015
+    3300166: Tabla hijo016
+    3300168: Tabla hijo017
+    3300170: Tabla hijo018
+    3300172: Tabla hijo019
+    3300174: Tabla hijo020
+    3300176: Tabla hijo021
+    3300178: Tabla hijo022
+    3300180: Tabla hijo023
+    3300182: Tabla hijo024
+    3300184: Tabla hijo025
+    3300186: Tabla hijo026
+    3300188: Tabla hijo027
+    3300190: Tabla hijo028
+    3300192: Tabla hijo029
+    3300194: Tabla hijo030
+    3300196: Tabla hijo031
+    3300198: Tabla hijo032
+    3300200: Tabla hijo033
+    3300202: Tabla hijo034
+    3300204: Tabla hijo035
+    3300206: Tabla hijo036
+    3300208: Tabla hijo037
+    3300210: Tabla hijo038
+    3300212: Tabla hijo039
+    3300214: Tabla hijo040
+    3300216: Tabla hijo041
+    3300218: Tabla hijo042
+    3300220: Tabla hijo043
+    3300222: Tabla hijo044
+    3300224: Tabla hijo045
+    3300226: Tabla hijo046
+    3300228: Tabla hijo047
+    3300230: Tabla hijo048
+    3300232: Tabla hijo049
+    3300234: Tabla hijo050
+    3300236: Tabla hijo051
+    3300238: Tabla hijo052
+    3300240: Tabla hijo053
+    3300242: Tabla hijo054
+    3300244: Tabla hijo055
+    3300246: Tabla Padre
+    3300248: Tabla Padre001
+    3300250: Tabla Padre002
+    3300252: Tabla Padre003
+    3300254: Tejado
+    3300256: Tejado001
+    3300258: Tejado002
+    3300260: Tejado003
+    4300000: Pajar
+    4300002: Tejado
+    4300004: Plane001
+    4300006: Paja
+    4300008: Cuerda
+    4300010: Poste Padre
+    4300012: Tabla Padre
+    4300014: Tabla hijo
+    4300016: Poste Padre001
+    4300018: Tabla hijo001
+    4300020: Poste Padre002
+    4300022: Tabla hijo002
+    4300024: Poste Padre003
+    4300026: Tabla hijo003
+    4300028: Poste Padre004
+    4300030: Tabla hijo004
+    4300032: Poste Padre005
+    4300034: Tabla hijo005
+    4300036: Poste Padre006
+    4300038: Tabla hijo006
+    4300040: Poste Padre007
+    4300042: Tabla hijo007
+    4300044: Poste Padre008
+    4300046: Tabla hijo008
+    4300048: Poste Padre009
+    4300050: Tabla hijo009
+    4300052: Poste Padre010
+    4300054: Tabla hijo010
+    4300056: Poste Padre011
+    4300058: Tabla hijo011
+    4300060: Poste Padre012
+    4300062: Tabla hijo012
+    4300064: Poste Padre013
+    4300066: Tabla hijo013
+    4300068: Poste Padre014
+    4300070: Poste Padre015
+    4300072: Poste Padre016
+    4300074: Poste Padre017
+    4300076: Poste Padre018
+    4300078: Poste Padre019
+    4300080: Poste Padre020
+    4300082: Poste Padre021
+    4300084: Poste Padre022
+    4300086: Poste Padre023
+    4300088: Poste Padre024
+    4300090: Poste Padre025
+    4300092: Poste Padre026
+    4300094: Poste Padre027
+    4300096: Tabla hijo014
+    4300098: Tabla hijo015
+    4300100: Tabla hijo016
+    4300102: Tabla hijo017
+    4300104: Tabla hijo018
+    4300106: Tabla hijo019
+    4300108: Tabla hijo020
+    4300110: Tabla hijo021
+    4300112: Tabla hijo022
+    4300114: Tabla hijo023
+    4300116: Tabla hijo024
+    4300118: Tabla hijo025
+    4300120: Tabla hijo026
+    4300122: Tabla hijo027
+    4300124: Tabla Padre001
+    4300126: Poste Padre028
+    4300128: Poste Padre029
+    4300130: Poste Padre030
+    4300132: Poste Padre031
+    4300134: Poste Padre032
+    4300136: Poste Padre033
+    4300138: Poste Padre034
+    4300140: Poste Padre035
+    4300142: Poste Padre036
+    4300144: Poste Padre037
+    4300146: Poste Padre038
+    4300148: Poste Padre039
+    4300150: Poste Padre040
+    4300152: Poste Padre041
+    4300154: Tabla hijo028
+    4300156: Tabla hijo029
+    4300158: Tabla hijo030
+    4300160: Tabla hijo031
+    4300162: Tabla hijo032
+    4300164: Tabla hijo033
+    4300166: Tabla hijo034
+    4300168: Tabla hijo035
+    4300170: Tabla hijo036
+    4300172: Tabla hijo037
+    4300174: Tabla hijo038
+    4300176: Tabla hijo039
+    4300178: Tabla hijo040
+    4300180: Tabla hijo041
+    4300182: Tabla Padre002
+    4300184: Poste Padre042
+    4300186: Poste Padre043
+    4300188: Poste Padre044
+    4300190: Poste Padre045
+    4300192: Poste Padre046
+    4300194: Poste Padre047
+    4300196: Poste Padre048
+    4300198: Poste Padre049
+    4300200: Poste Padre050
+    4300202: Poste Padre051
+    4300204: Poste Padre052
+    4300206: Poste Padre053
+    4300208: Poste Padre054
+    4300210: Poste Padre055
+    4300212: Tabla hijo042
+    4300214: Tabla hijo043
+    4300216: Tabla hijo044
+    4300218: Tabla hijo045
+    4300220: Tabla hijo046
+    4300222: Tabla hijo047
+    4300224: Tabla hijo048
+    4300226: Tabla hijo049
+    4300228: Tabla hijo050
+    4300230: Tabla hijo051
+    4300232: Tabla hijo052
+    4300234: Tabla hijo053
+    4300236: Tabla hijo054
+    4300238: Tabla hijo055
+    4300240: Tabla Padre003
+    4300242: Paja001
+    4300244: Cuerda001
+    4300246: Paja002
+    4300248: Cuerda002
+    4300250: Pajar001
+    4300252: Tejado001
+    4300254: Pajar002
+    4300256: Tejado002
+    4300258: Pajar003
+    4300260: Tejado003
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
