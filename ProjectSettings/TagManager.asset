@@ -8,6 +8,7 @@ TagManager:
   - Maiz
   - CabrasSpawn
   - MeteorSpawn
+  - MapInteractive
   layers:
   - Default
   - TransparentFX
